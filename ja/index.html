@@ -7,13 +7,16 @@
   <!-- 検索除外（実質非公開テスト用） -->
   <meta name="robots" content="noindex, nofollow">
   <style>
-    :root { --brand:#6366F1; }
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Noto Sans", sans-serif; margin:0; padding:32px; color:#111; background:#fff; }
-    h1 { font-size:24px; margin-bottom:24px; }
+    :root { --brand:#6366F1; --bg:#EEF2FF; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Noto Sans", sans-serif; margin:0; padding:32px; color:#111; background:var(--bg); }
+    h1 { font-size:24px; margin:0; }
     .grid { display:flex; flex-wrap:wrap; gap:16px; }
-    .card { flex:1 1 280px; border:1px solid #e5e7eb; border-radius:12px; padding:20px; }
+    .title { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:24px; }
+    .title img { width:28px; height:28px; }
+    .card { flex:1 1 280px; border:1px solid #e5e7eb; border-radius:12px; padding:20px; background:#fff; }
     .card h2 { font-size:20px; margin:0 0 8px; }
     .price { font-size:28px; font-weight:700; margin:8px 0 12px; }
+    .actions { text-align:right; margin-top:8px; }
     ul { margin:0 0 16px 18px; }
     .btn { display:inline-block; padding:10px 16px; border-radius:8px; background:var(--brand); color:#fff; text-decoration:none; font-weight:600; }
     .btn:hover { filter:brightness(0.95); }
@@ -21,7 +24,10 @@
   </style>
 </head>
 <body>
-  <h1>Headline Marker プラン比較（テスト）</h1>
+  <div class="title">
+    <img src="assets/hm-icon.svg" alt="Headline Marker" />
+    <h1>Headline Marker プラン比較（テスト）</h1>
+  </div>
 
   <div class="grid">
     <!-- Free -->
@@ -33,9 +39,9 @@
         <li>ハイライトカラー：2色</li>
         <li>同期機能：なし</li>
       </ul>
-      <!-- 後でStripe Customer PortalのURLに差し替え -->
-      <a class="btn" href="https://billing.stripe.com/p/login/test_dRm6oz4cU6RGeUz1XMaEE00
-" target="_blank" rel="noopener">支払いの管理（解約）</a>
+      <div class="actions">
+        <a class="btn" href="https://billing.stripe.com/p/login/test_dRm6oz4cU6RGeUz1XMaEE00" target="_blank" rel="noopener">支払いの管理（解約）</a>
+      </div>
       <div class="muted">※有料をご利用中の方は、ここから解約でFreeに戻れます。</div>
     </div>
 
@@ -48,9 +54,9 @@
         <li>ハイライトカラー：6色</li>
         <li>同期機能：なし</li>
       </ul>
-      <!-- 後でJPYのPayment Link（Basic）に差し替え -->
-      <a class="btn" href="https://buy.stripe.com/test_dRm6oz4cU6RGeUz1XMaEE00
-" target="_blank" rel="noopener">登録する</a>
+      <div class="actions">
+        <a class="btn" href="__PAYMENT_LINK_JA_BASIC__" target="_blank" rel="noopener">登録する</a>
+      </div>
     </div>
 
     <!-- Pro -->
@@ -62,9 +68,9 @@
         <li>ハイライトカラー：12色</li>
         <li>同期機能：あり</li>
       </ul>
-      <!-- 後でJPYのPayment Link（Pro）に差し替え -->
-      <a class="btn" href="https://buy.stripe.com/test_aFadR14cU1xm4fV59YaEE01
-" target="_blank" rel="noopener">登録する</a>
+      <div class="actions">
+        <a class="btn" href="__PAYMENT_LINK_JA_PRO__" target="_blank" rel="noopener">登録する</a>
+      </div>
     </div>
   </div>
 </body>
