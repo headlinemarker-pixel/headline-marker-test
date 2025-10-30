@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Headline Marker | Plans (Test)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root { --brand:#6366F1; }
+    body { font-family: system-ui, sans-serif; margin:0; padding:32px; color:#111; background:#fff; }
+    h1 { font-size:24px; margin-bottom:24px; }
+    .grid { display:flex; flex-wrap:wrap; gap:16px; }
+    .card { flex:1 1 280px; border:1px solid #e5e7eb; border-radius:12px; padding:20px; }
+    .card h2 { font-size:20px; margin:0 0 8px; }
+    .price { font-size:28px; font-weight:700; margin:8px 0 12px; }
+    ul { margin:0 0 16px 18px; }
+    .btn { display:inline-block; padding:10px 16px; border-radius:8px; background:var(--brand); color:#fff; text-decoration:none; font-weight:600; }
+    .btn:hover { filter:brightness(0.95); }
+    .muted { color:#6b7280; font-size:12px; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <h1>Headline Marker — Plans (Test)</h1>
+
+  <div class="grid">
+    <!-- Free -->
+    <div class="card">
+      <h2>Free</h2>
+      <div class="price">$0 / mo</div>
+      <ul>
+        <li>Headlines: up to 10</li>
+        <li>Highlight colors: 2</li>
+        <li>Sync: not available</li>
+      </ul>
+      <a class="btn" href="https://billing.stripe.com/p/login/test_dRm6oz4cU6RGeUz1XMaEE00
+" target="_blank" rel="noopener">Manage billing (Cancel)</a>
+      <div class="muted">If you’re on a paid plan, cancel here to switch back to Free.</div>
+    </div>
+
+    <!-- Basic -->
+    <div class="card">
+      <h2>Basic</h2>
+      <div class="price">$3.00 / mo</div>
+      <ul>
+        <li>Headlines: unlimited</li>
+        <li>Highlight colors: 6</li>
+        <li>Sync: not available</li>
+      </ul>
+      <a class="btn" href="https://buy.stripe.com/test_dRm5kvgZG1xmh2H9qeaEE02
+" target="_blank" rel="noopener">Subscribe</a>
+    </div>
+
+    <!-- Pro -->
+    <div class="card">
+      <h2>Pro</h2>
+      <div class="price">$6.00 / mo</div>
+      <ul>
+        <li>Headlines: unlimited</li>
+        <li>Highlight colors: 12</li>
+        <li>Sync: available</li>
+      </ul>
+      <a class="btn" href="https://buy.stripe.com/test_4gMbIT6l2ek86o359YaEE03
+" target="_blank" rel="noopener">Subscribe</a>
+    </div>
+  </div>
+</body>
+</html>
