@@ -29,58 +29,64 @@
     <h1>Headline Marker プラン比較（テスト）</h1>
   </div>
 
-  <div class="grid">
-    <!-- Free -->
-    <div class="card">
-      <h2>Free</h2>
-      <div class="price">¥0 / 月</div>
-      <ul>
-        <li>見出し登録数（1ページあたり）：3件まで</li>
-        <li>見出し登録数（ページ数）：3ページまで</li>
-        <li>ハイライトカラー：2色</li>
-        <li>テキストカラー：2色</li>
-        <li>テキストスタイル変更：なし</li>
-        <li>バックアップ機能：なし</li>
-      </ul>
-      <div class="actions">
-        <a class="btn" href="https://billing.stripe.com/p/login/test_dRm6oz4cU6RGeUz1XMaEE00" target="_blank" rel="noopener">支払いの管理（解約）</a>
-      </div>
-      <div class="muted">※有料をご利用中の方は、ここから解約でFreeに戻れます。</div>
-    </div>
+  <div class="pricing">
+    <table style="width:100%;border-collapse:collapse;background:#fff;">
+      <thead>
+        <tr>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:left;">機能</th>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">Free</th>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">Basic</th>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:left;">
+            見出し登録数<br><small>1ページあたり</small>
+          </th>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>3件まで</strong></td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>無制限</strong></td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>無制限</strong></td>
+        </tr>
+        <tr>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:left;">登録可能ページ数</th>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>3ページまで</strong></td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>5ページまで</strong></td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>無制限</strong></td>
+        </tr>
+        <tr>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:left;">ハイライトカラー数</th>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">2色</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">全色（12色）</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">全色（12色）</td>
+        </tr>
+        <tr>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:left;">テキストカラー数</th>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">2色（黒／白）</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">全色（3色）</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">全色（3色）</td>
+        </tr>
+        <tr>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:left;">テキストスタイル変更</th>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">なし</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">あり</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">あり</td>
+        </tr>
+        <tr>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:left;">バックアップ機能</th>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">—</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">—</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>あり</strong></td>
+        </tr>
+      </tbody>
+    </table>
 
-    <!-- Basic -->
-    <div class="card">
-      <h2>Basic</h2>
-      <div class="price">¥300 / 月</div>
-      <ul>
-        <li>見出し登録数（1ページあたり）：無制限</li>
-        <li>見出し登録数（ページ数）：5ページまで</li>
-        <li>ハイライトカラー：全色（12色）</li>
-        <li>テキストカラー：全色（３色）</li>
-        <li>テキストスタイル変更：あり</li>
-        <li>バックアップ機能：なし</li>
-      </ul>
-      <div class="actions">
-        <a class="btn" href="__PAYMENT_LINK_JA_BASIC__" target="_blank" rel="noopener">登録する</a>
-      </div>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:16px;">
+      <a class="btn" href="https://billing.stripe.com/p/login/test_dRm6oz4cU6RGeUz1XMaEE00" target="_blank" rel="noopener">プランを選択</a>
+      <a class="btn" href="__PAYMENT_LINK_JA_BASIC__" target="_blank" rel="noopener">プランを選択</a>
+      <a class="btn" href="__PAYMENT_LINK_JA_PRO__" target="_blank" rel="noopener">プランを選択</a>
     </div>
-
-    <!-- Pro -->
-    <div class="card">
-      <h2>Pro</h2>
-      <div class="price">¥600 / 月</div>
-      <ul>
-        <li>見出し登録数（1ページあたり）：無制限</li>
-        <li>見出し登録数（ページ数）：無制限</li>
-        <li>ハイライトカラー：全色（12色）</li>
-        <li>テキストカラー：全色（３色）</li>
-        <li>テキストスタイル変更：あり</li>
-        <li>バックアップ機能：あり</li>
-      </ul>
-      <div class="actions">
-        <a class="btn" href="__PAYMENT_LINK_JA_PRO__" target="_blank" rel="noopener">登録する</a>
-      </div>
-    </div>
+    <div class="muted" style="text-align:center;">※有料プランをご利用中の方は、解約でFreeに戻ります。</div>
   </div>
 </body>
 </html>
