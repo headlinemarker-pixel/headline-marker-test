@@ -22,11 +22,12 @@
     .btn:hover { filter:brightness(0.95); }
     .muted { color:#6b7280; font-size:12px; margin-top:8px; }
 	/* --- table decorations --- */
-    .pricing-table thead th { background: rgba(99,102,241,.08); }                 /* 見出し行：薄いブランド色 */
+    .pricing-table{ box-shadow:0 0 0 2px #c7d2fe; border-radius:12px; overflow:hidden; }  /* 外枠だけを太く見せるフレーム */
+    .pricing-table thead th { background: rgba(99,102,241,.12); }                          /* 見出し行：少しだけ濃く */
     .pricing-table tbody tr:nth-child(odd) th,
-    .pricing-table tbody tr:nth-child(odd) td { background: rgba(99,102,241,.03); } /* ゼブラ（奇数行） */
+    .pricing-table tbody tr:nth-child(odd) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数）：濃さ+2% */
     .pricing-table tbody tr.cta-row th,
-    .pricing-table tbody tr.cta-row td { background: rgba(99,102,241,.10); }       /* 最終（ボタン）行：やや濃い */
+    .pricing-table tbody tr.cta-row td { background: rgba(99,102,241,.16); }               /* 最終行：帯感を強化 */
   </style>
 </head>
 <body>
