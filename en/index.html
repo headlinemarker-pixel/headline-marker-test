@@ -2,110 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Headline Marker | Pricing (Test)</title>
+  <title>Headline Marker｜プラン比較（テスト）</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <!-- Hide from search engines (test only) -->
+  <!-- 検索除外（実質非公開テスト用） -->
   <meta name="robots" content="noindex, nofollow">
   <style>
     :root { --brand:#6366F1; --bg:#EEF2FF; }
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif; margin:0; padding:32px; color:#111; background:var(--bg); }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Noto Sans", sans-serif; margin:0; padding:32px; color:#111; background:var(--bg); }
     h1 { font-size:24px; margin:0; }
+    .grid { display:flex; flex-wrap:wrap; gap:16px; }
     .title { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:24px; }
     .title img { width:28px; height:28px; }
-    .pricing { max-width:880px; margin:0 auto; }
+    .card { flex:1 1 280px; border:1px solid #e5e7eb; border-radius:12px; padding:20px; background:#fff; }
+    .card h2 { font-size:20px; margin:0 0 8px; }
+    .price { font-size:28px; font-weight:700; margin:8px 0 12px; }
+    .actions { text-align:right; margin-top:8px; }
+    ul { margin:0 0 16px 18px; }
     .btn { display:inline-block; padding:10px 16px; border-radius:8px; background:var(--brand); color:#fff; text-decoration:none; font-weight:600; }
     .btn:hover { filter:brightness(0.95); }
     .muted { color:#6b7280; font-size:12px; margin-top:8px; }
-
-    /* --- table decorations --- */
-    .pricing-table{ width:100%; border-collapse:collapse; background:#fff; box-shadow:0 0 0 2px #c7d2fe; border-radius:12px; overflow:hidden; }
-    .pricing-table th, .pricing-table td { border:1px solid #e5e7eb; padding:8px .5em; text-align:center; }
-    .pricing-table thead th { background: rgba(99,102,241,.12); }           /* header row */
+	/* --- table decorations --- */
+    .pricing-table{ box-shadow:0 0 0 2px #c7d2fe; border-radius:12px; overflow:hidden; }  /* 外枠だけを太く見せるフレーム */
+    .pricing-table thead th { background: rgba(99,102,241,.12); }                          /* 見出し行：少しだけ濃く */
     .pricing-table tbody tr:nth-child(odd) th,
-    .pricing-table tbody tr:nth-child(odd) td { background: rgba(99,102,241,.05); } /* zebra */
+    .pricing-table tbody tr:nth-child(odd) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数）：濃さ+2% */
     .pricing-table tbody tr.cta-row th,
-    .pricing-table tbody tr.cta-row td { background: rgba(99,102,241,.16); } /* CTA row */
+    .pricing-table tbody tr.cta-row td { background: rgba(99,102,241,.16); }               /* 最終行：帯感を強化 */
   </style>
 </head>
 <body>
   <div class="title">
-    <img src="../assets/icons/hm-38.png" alt="Headline Marker" width="32" height="32">
-    <h1>Headline Marker — Pricing (Test)</h1>
+    <img src="../assets/icons/hm-38.png" alt="Headline Marker" />
+    <h1>Headline Marker プラン比較（テスト）</h1>
   </div>
 
-  <div class="pricing">
-    <table class="pricing-table">
+  <div class="pricing" style="max-width: 880px; margin: 0 auto;">
+    <table class="pricing-table" style="width:100%;border-collapse:collapse;background:#fff;">
       <thead>
         <tr>
-          <th style="width:32%;">Feature</th>
-          <th style="width:22%;">Free</th>
-          <th style="width:23%;">Basic</th>
-          <th style="width:23%;">Pro</th>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">機能</th>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">Free</th>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">Basic</th>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">Pro</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th>Headings per page</th>
-          <td><strong>Up to 10</strong></td>
-          <td><strong>Unlimited</strong></td>
-          <td><strong>Unlimited</strong></td>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">
+            見出し登録数<br><small>1ページあたり</small>
+          </th>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>3件まで</strong></td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>無制限</strong></td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>無制限</strong></td>
         </tr>
         <tr>
-          <th>Pages you can register</th>
-          <td><strong>Limited</strong></td>
-          <td><strong>Unlimited</strong></td>
-          <td><strong>Unlimited</strong></td>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">登録可能ページ数</th>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>3ページまで</strong></td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>5ページまで</strong></td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>無制限</strong></td>
         </tr>
         <tr>
-          <th>Highlight colors</th>
-          <td><strong>2 colors</strong></td>
-          <td><strong>6 colors</strong></td>
-          <td><strong>12 colors</strong></td>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">ハイライトカラー数</th>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">2色</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">全色（12色）</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">全色（12色）</td>
         </tr>
         <tr>
-          <th>Text colors</th>
-          <td><strong>2 colors</strong></td>
-          <td><strong>6 colors</strong></td>
-          <td><strong>12 colors</strong></td>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">テキストカラー数</th>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">2色（黒／白）</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">全色（3色）</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">全色（3色）</td>
         </tr>
         <tr>
-          <th>Text style editing</th>
-          <td><strong>Unavailable</strong></td>
-          <td><strong>Available</strong></td>
-          <td><strong>Available</strong></td>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">テキストスタイル変更</th>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">なし</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">あり</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">あり</td>
         </tr>
         <tr>
-          <th>Backup</th>
-          <td><strong>Unavailable</strong></td>
-          <td><strong>Available</strong></td>
-          <td><strong>Available</strong></td>
+          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">バックアップ機能</th>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">—</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">—</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>あり</strong></td>
         </tr>
-        <tr>
-          <th>Price (monthly)</th>
-          <td><strong>¥0</strong></td>
-          <td><strong>¥300 / month</strong></td>
-          <td><strong>¥600 / month</strong></td>
-        </tr>
-        <tr class="cta-row">
-          <th></th>
-          <td>
-            <!-- Customer Portal (manage/cancel) -->
-            <a class="btn" href="https://billing.stripe.com/p/login/test_dRm6oz4cU6RGeUz1XMaEE00" target="_blank" rel="noopener">Manage billing / Cancel</a>
+		<tr class="cta-row">
+          <th style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;"></th>
+          <td style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;">
+            <a class="btn" href="https://billing.stripe.com/p/login/test_dRm6oz4cU6RGeUz1XMaEE00" target="_blank" rel="noopener">プランを選択</a>
           </td>
-          <td>
-            <!-- Payment Link (EN Basic) -->
-            <a class="btn" href="https://buy.stripe.com/test_dRm5kvgZG1xmh2H9qeaEE02" target="_blank" rel="noopener">Choose plan</a>
+          <td style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;">
+            <a class="btn" href="https://buy.stripe.com/test_dRm6oz4cU6RGeUz1XMaEE00" target="_blank" rel="noopener">プランを選択</a>
           </td>
-          <td>
-            <!-- Payment Link (EN Pro) -->
-            <a class="btn" href="https://buy.stripe.com/test_4gMbIT6l2ek86o359YaEE03" target="_blank" rel="noopener">Choose plan</a>
+          <td style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;">
+            <a class="btn" href="https://buy.stripe.com/test_aFadR14cU1xm4fV59YaEE01" target="_blank" rel="noopener">プランを選択</a>
           </td>
         </tr>
       </tbody>
     </table>
-    <p class="muted" style="text-align:center;margin-top:10px;">
-      * This page is for testing. Content and pricing may change before release.
-    </p>
+    <div class="muted" style="text-align:center;">※有料プランをご利用中の方は、解約でFreeに戻ります。</div>
   </div>
 </body>
 </html>
