@@ -21,6 +21,12 @@
     .btn { display:inline-block; padding:10px 16px; border-radius:8px; background:var(--brand); color:#fff; text-decoration:none; font-weight:600; }
     .btn:hover { filter:brightness(0.95); }
     .muted { color:#6b7280; font-size:12px; margin-top:8px; }
+	/* --- table decorations --- */
+    .pricing-table thead th { background: rgba(99,102,241,.08); }                 /* 見出し行：薄いブランド色 */
+    .pricing-table tbody tr:nth-child(odd) th,
+    .pricing-table tbody tr:nth-child(odd) td { background: rgba(99,102,241,.03); } /* ゼブラ（奇数行） */
+    .pricing-table tbody tr.cta-row th,
+    .pricing-table tbody tr.cta-row td { background: rgba(99,102,241,.10); }       /* 最終（ボタン）行：やや濃い */
   </style>
 </head>
 <body>
@@ -30,7 +36,7 @@
   </div>
 
   <div class="pricing" style="max-width: 880px; margin: 0 auto;">
-    <table style="width:100%;border-collapse:collapse;background:#fff;">
+    <table class="pricing-table" style="width:100%;border-collapse:collapse;background:#fff;">
       <thead>
         <tr>
           <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">機能</th>
@@ -78,7 +84,7 @@
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">—</td>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>あり</strong></td>
         </tr>
-		<tr>
+		<tr class="cta-row">
           <th style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;"></th>
           <td style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;">
             <a class="btn" href="https://billing.stripe.com/p/login/test_dRm6oz4cU6RGeUz1XMaEE00" target="_blank" rel="noopener">プランを選択</a>
