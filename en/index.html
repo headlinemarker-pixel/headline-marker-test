@@ -2,66 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Headline Marker | Plans (Test)</title>
+  <title>Headline Marker | Pricing (Test)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Hide from search engines (test only) -->
   <meta name="robots" content="noindex, nofollow">
   <style>
-    :root { --brand:#6366F1; }
-    body { font-family: system-ui, sans-serif; margin:0; padding:32px; color:#111; background:#fff; }
-    h1 { font-size:24px; margin-bottom:24px; }
-    .grid { display:flex; flex-wrap:wrap; gap:16px; }
-    .card { flex:1 1 280px; border:1px solid #e5e7eb; border-radius:12px; padding:20px; }
-    .card h2 { font-size:20px; margin:0 0 8px; }
-    .price { font-size:28px; font-weight:700; margin:8px 0 12px; }
-    ul { margin:0 0 16px 18px; }
+    :root { --brand:#6366F1; --bg:#EEF2FF; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif; margin:0; padding:32px; color:#111; background:var(--bg); }
+    h1 { font-size:24px; margin:0; }
+    .title { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:24px; }
+    .title img { width:28px; height:28px; }
+    .pricing { max-width:880px; margin:0 auto; }
     .btn { display:inline-block; padding:10px 16px; border-radius:8px; background:var(--brand); color:#fff; text-decoration:none; font-weight:600; }
     .btn:hover { filter:brightness(0.95); }
     .muted { color:#6b7280; font-size:12px; margin-top:8px; }
+
+    /* --- table decorations --- */
+    .pricing-table{ width:100%; border-collapse:collapse; background:#fff; box-shadow:0 0 0 2px #c7d2fe; border-radius:12px; overflow:hidden; }
+    .pricing-table th, .pricing-table td { border:1px solid #e5e7eb; padding:8px .5em; text-align:center; }
+    .pricing-table thead th { background: rgba(99,102,241,.12); }           /* header row */
+    .pricing-table tbody tr:nth-child(odd) th,
+    .pricing-table tbody tr:nth-child(odd) td { background: rgba(99,102,241,.05); } /* zebra */
+    .pricing-table tbody tr.cta-row th,
+    .pricing-table tbody tr.cta-row td { background: rgba(99,102,241,.16); } /* CTA row */
   </style>
 </head>
 <body>
-  <h1>Headline Marker — Plans (Test)</h1>
+  <div class="title">
+    <img src="../assets/icons/hm-38.png" alt="Headline Marker" width="32" height="32">
+    <h1>Headline Marker — Pricing (Test)</h1>
+  </div>
 
-  <div class="grid">
-    <!-- Free -->
-    <div class="card">
-      <h2>Free</h2>
-      <div class="price">$0 / mo</div>
-      <ul>
-        <li>Headlines: up to 10</li>
-        <li>Highlight colors: 2</li>
-        <li>Sync: not available</li>
-      </ul>
-      <a class="btn" href="https://billing.stripe.com/p/login/test_dRm6oz4cU6RGeUz1XMaEE00
-" target="_blank" rel="noopener">Manage billing (Cancel)</a>
-      <div class="muted">If you’re on a paid plan, cancel here to switch back to Free.</div>
-    </div>
-
-    <!-- Basic -->
-    <div class="card">
-      <h2>Basic</h2>
-      <div class="price">$3.00 / mo</div>
-      <ul>
-        <li>Headlines: unlimited</li>
-        <li>Highlight colors: 6</li>
-        <li>Sync: not available</li>
-      </ul>
-      <a class="btn" href="https://buy.stripe.com/test_dRm5kvgZG1xmh2H9qeaEE02
-" target="_blank" rel="noopener">Subscribe</a>
-    </div>
-
-    <!-- Pro -->
-    <div class="card">
-      <h2>Pro</h2>
-      <div class="price">$6.00 / mo</div>
-      <ul>
-        <li>Headlines: unlimited</li>
-        <li>Highlight colors: 12</li>
-        <li>Sync: available</li>
-      </ul>
-      <a class="btn" href="https://buy.stripe.com/test_4gMbIT6l2ek86o359YaEE03
-" target="_blank" rel="noopener">Subscribe</a>
-    </div>
+  <div class="pricing">
+    <table class="pricing-table">
+      <thead>
+        <tr>
+          <th style="width:32%;">Feature</th>
+          <th style="width:22%;">Free</th>
+          <th style="width:23%;">Basic</th>
+          <th style="width:23%;">Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Headings per page</th>
+          <td><strong>Up to 10</strong></td>
+          <td><strong>Unlimited</strong></td>
+          <td><strong>Unlimited</strong></td>
+        </tr>
+        <tr>
+          <th>Pages you can register</th>
+          <td><strong>Limited</strong></td>
+          <td><strong>Unlimited</strong></td>
+          <td><strong>Unlimited</strong></td>
+        </tr>
+        <tr>
+          <th>Highlight colors</th>
+          <td><strong>2 colors</strong></td>
+          <td><strong>6 colors</strong></td>
+          <td><strong>12 colors</strong></td>
+        </tr>
+        <tr>
+          <th>Text colors</th>
+          <td><strong>2 colors</strong></td>
+          <td><strong>6 colors</strong></td>
+          <td><strong>12 colors</strong></td>
+        </tr>
+        <tr>
+          <th>Text style editing</th>
+          <td><strong>Unavailable</strong></td>
+          <td><strong>Available</strong></td>
+          <td><strong>Available</strong></td>
+        </tr>
+        <tr>
+          <th>Backup</th>
+          <td><strong>Unavailable</strong></td>
+          <td><strong>Available</strong></td>
+          <td><strong>Available</strong></td>
+        </tr>
+        <tr>
+          <th>Price (monthly)</th>
+          <td><strong>¥0</strong></td>
+          <td><strong>¥300 / month</strong></td>
+          <td><strong>¥600 / month</strong></td>
+        </tr>
+        <tr class="cta-row">
+          <th></th>
+          <td>
+            <!-- Customer Portal (manage/cancel) -->
+            <a class="btn" href="https://billing.stripe.com/p/login/test_dRm6oz4cU6RGeUz1XMaEE00" target="_blank" rel="noopener">Manage billing / Cancel</a>
+          </td>
+          <td>
+            <!-- Payment Link (EN Basic) -->
+            <a class="btn" href="https://buy.stripe.com/test_dRm5kvgZG1xmh2H9qeaEE02" target="_blank" rel="noopener">Choose plan</a>
+          </td>
+          <td>
+            <!-- Payment Link (EN Pro) -->
+            <a class="btn" href="https://buy.stripe.com/test_4gMbIT6l2ek86o359YaEE03" target="_blank" rel="noopener">Choose plan</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="muted" style="text-align:center;margin-top:10px;">
+      * This page is for testing. Content and pricing may change before release.
+    </p>
   </div>
 </body>
 </html>
