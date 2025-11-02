@@ -59,7 +59,7 @@
 
     /* --- below: plans -> two columns (今後の開発予定 / ご意見) --- */
     .post-sections { max-width:880px; margin:28px auto 0; display:flex; gap:16px; }
-    .post-col { flex:1 1 0; min-width:0; }   /* ← タイポ修正（.post-col）。等分＆縮小可を有効化 */
+    .post-col { flex:0 0 50%; min-width:0; }  /* ← 内容量に関わらず厳密に半分ずつに固定 */
     .section-card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px 18px; }
     /* 見出しはカード外に出すため、カード内h3の指定は廃止 */
     .post-col > .section-title { margin:0 0 10px; font-size:18px; font-weight:800; padding-left:0; text-align:center; }
@@ -182,7 +182,7 @@
       <div class="post-col">
         <h3 class="section-title">Upcoming Development Plans</h3>
         <div class="section-card">
-          <p class="intro"><strong>Introduction: This extension is being developed by a coding beginner in collaboration with generative AI. While development may take time, we prioritize features that many users request. Thank you for your patience and support!</p>
+          <p class="intro"><strong>Introduction:</strong> This extension is being developed by a coding beginner in collaboration with generative AI. While development may take time, we prioritize features that many users request. Thank you for your patience and support!</p>
           <div class="dev-list">
             <ul>
               <li>・<strong>Sync Function</strong>：<br>Sync your saved headings with your Google Account to access them across multiple devices.</li>
@@ -209,7 +209,7 @@
           <div class="feedback-flex">
             <div class="feedback-text">
               <p class="muted">You can also submit feedback using the “Feedback” button at the bottom-right of the popup.</p>
-              <p class="muted">ごYou can update or revise your feedback later. Try the extension first and feel free to modify your responses anytime.</p>
+              <p class="muted">You can update or revise your feedback later. Try the extension first and feel free to modify your responses anytime.</p>
             </div>
             <div class="feedback-fig">
               <img class="feedback-img" src="../assets/feedback-entry-ja.png" width="180" height="180" loading="lazy" alt="ポップアップ右下の『ご意見』ボタン（日本語）">
@@ -220,8 +220,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
     </div> <!-- /.post-sections -->
   </div>   <!-- /.pricing -->
   <!-- Modals -->
