@@ -59,7 +59,7 @@
 
     /* --- below: plans -> two columns (今後の開発予定 / ご意見) --- */
     .post-sections { max-width:880px; margin:28px auto 0; display:flex; gap:16px; }
-    ..post-col { flex:1 1 0; min-width:0; }  /* ← 等分のため“縮小可”にする（右の内容で押し広がるのを防止） */
+    .post-col { flex:1 1 0; min-width:0; }   /* ← タイポ修正（.post-col）。等分＆縮小可を有効化 */
     .section-card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px 18px; }
     /* 見出しはカード外に出すため、カード内h3の指定は廃止 */
     .post-col > .section-title { margin:0 0 10px; font-size:18px; font-weight:800; padding-left:0; text-align:center; }
@@ -85,8 +85,8 @@
     .dev-notes p { font-size:12px; line-height:1.25; margin:2px 0; color:#6b7280; } /* ※注意書き：小さめ＆行間詰め（今回は触らない） */
 	/* 右カラム：テキスト＋画像の2カラム風配置（1:2 / 画像は右1/3程度） */
     .feedback-flex { display:flex; align-items:flex-start; gap:12px; }
-    .feedback-text { flex:1; } /* 左右50:50に */
-    .feedback-fig  { flex:1; display:flex; justify-content:flex-end; }
+    .feedback-text { flex:1; min-width:0; } /* 左右50:50。内部でも縮小可に */
+    .feedback-fig  { flex:1; min-width:0; display:flex; justify-content:flex-end; }
     .feedback-img  { width:100%; max-width:none; height:auto; background:#f1f5f9; border:1px dashed #cbd5e1; border-radius:8px; }
     /* 右カラム：フォームボタンを左右中央に */
     .actions.center { text-align:center !important; }
@@ -155,7 +155,7 @@
           <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">Backup feature</th>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">—</td>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">—</td>
-          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>〇</strong></td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">〇</td>
         </tr>
 		<tr id="row-first" class="cta-row">
           <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">For first-time users</th>
@@ -168,7 +168,7 @@
           </td>
         </tr>
         <tr id="row-existing" class="cta-row">
-          <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">For existing users (including canceled subscriptions)<br>（解約済み含む）</th>
+          <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">For existing users<br> (including canceled subscriptions)</th>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;" colspan="3">
             <div class="merged-actions">
               <a class="btn" href="#" onclick="return openExistingModal()">Change Plan / Manage Billing</a>
