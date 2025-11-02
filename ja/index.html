@@ -73,8 +73,9 @@
     .post-sections { gap:20px; margin-top:32px; }
 	/* 開発予定（左カラム）のみ：囲い＆微調整 */
     .dev-list { background:#F8FAFF; border:1px solid #e5e7eb; border-radius:10px; padding:6px 12px; margin-top:8px; }
-    .dev-list ul { margin:4px 0 0 0; padding:0; list-style:none; } /* デフォの丸を無効化（・は本文で表示） */
-    .dev-list li { margin:3px 0; } /* 行間のみ維持。左インデントは不要 */
+    .dev-list ul { margin:4px 0 0 0; padding:0; list-style:none !important; } /* デフォの丸を完全無効化（・は本文で表示） */
+    .dev-list li { margin:3px 0; font-size:13px; } /* 説明=13px（li全体） */
+    .dev-list li strong { font-size:15px; }        /* タイトル=15px（太字部） */
     .dev-notes p { font-size:12px; line-height:1.25; margin:2px 0; } /* ※注意書き：小さめ＆行間詰め（今回は触らない） */
   </style>
 </head>
