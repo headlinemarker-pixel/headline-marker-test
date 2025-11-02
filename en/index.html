@@ -59,7 +59,7 @@
 
     /* --- below: plans -> two columns (今後の開発予定 / ご意見) --- */
     .post-sections { max-width:880px; margin:28px auto 0; display:flex; gap:16px; }
-    .post-col { flex:1 1 0; }
+    ..post-col { flex:1 1 0; min-width:0; }  /* ← 等分のため“縮小可”にする（右の内容で押し広がるのを防止） */
     .section-card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px 18px; }
     /* 見出しはカード外に出すため、カード内h3の指定は廃止 */
     .post-col > .section-title { margin:0 0 10px; font-size:18px; font-weight:800; padding-left:0; text-align:center; }
