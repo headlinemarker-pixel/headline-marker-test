@@ -28,7 +28,7 @@
     .pricing-table tbody tr:nth-child(odd) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数）：濃さ+2% */
     .pricing-table tbody tr.cta-row th,
     .pricing-table tbody tr.cta-row td { background: rgba(99,102,241,.16); }               /* 最終行：帯感を強化 */
-	#row-existing th { border-top:2px solid #e5e7eb !important; } /* 行A/Bの境界線を明確に */
+	#row-existing th, #row-existing td { border-top:3px solid #d1d5db !important; } /* 行A/Bの境界線をより明確に */
 	/* --- top banners (2枚看板) --- */
     .top-banners { display:flex; gap:12px; margin:16px auto 20px; max-width:880px; }
     .banner-card { flex:1 1 0; border:1px solid #e5e7eb; border-radius:12px; padding:14px 16px; background:#fff; font-weight:700; cursor:pointer; }
@@ -63,11 +63,11 @@
   <div class="top-banners">
     <button class="banner-card" id="banner-first">
       はじめての方
-      <small>初めてのご購入はこちら（行Aを強調表示）</small>
+      <small>初めてのご購入はこちら</small>
     </button>
     <button class="banner-card" id="banner-existing">
       ご利用中・ご利用経験のある方
-      <small>プラン変更・支払い管理はこちら（行Bを強調表示）</small>
+      <small>プラン変更・支払い管理はこちら</small>
     </button>
   </div>
 
@@ -110,7 +110,7 @@
         </tr>
         <tr>
           <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">テキストスタイル変更</th>
-          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">なし</td>
+          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">—</td>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">あり</td>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">あり</td>
         </tr>
@@ -131,16 +131,12 @@
           </td>
         </tr>
         <tr id="row-existing" class="cta-row">
-          <th style="border:1px solid #e5e7eb;padding:0;text-align:center;" colspan="4">
-            <div class="merged-cell">
-              <div class="merged-flex">
-               <div class="merged-title">既にご利用経験のある方<br>（解約済み含む）</div>
-                <div class="merged-actions">
-                  <a class="btn" href="#" onclick="return openExistingModal()">プラン変更・支払い管理</a>
-                </div>
-              </div>
+          <th style="border:1px solid #e5e7eb;border-right:2px solid #d1d5db;padding:8px 0.5em;text-align:center;">既にご利用経験のある方<br>（解約済み含む）</th>
+          <td style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;" colspan="3">
+            <div class="merged-actions">
+              <a class="btn" href="#" onclick="return openExistingModal()">プラン変更・支払い管理</a>
             </div>
-          </th>
+          </td>
         </tr>
       </tbody>
     </table>
