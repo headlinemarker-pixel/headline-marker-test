@@ -54,6 +54,16 @@
     .modal .actions { display:flex; gap:8px; justify-content:flex-end; margin-top:12px; }
     .btn-outline { display:inline-block; padding:10px 16px; border-radius:8px; background:#fff; border:1px solid #e5e7eb; color:#111; text-decoration:none; font-weight:600; }
     .modal-backdrop.show { display:flex; }
+
+    /* --- below: plans -> two columns (今後の開発予定 / ご意見) --- */
+    .post-sections { max-width:880px; margin:28px auto 0; display:flex; gap:16px; }
+    .post-col { flex:1 1 0; }
+    .section-card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px 18px; }
+    .section-card h3 { margin:0 0 10px; font-size:18px; }
+    .section-card .muted { color:#6b7280; font-size:12px; margin:8px 0 0; }
+    .section-card ul { margin:8px 0 0 18px; }
+    .section-card .btn { margin-top:10px; }
+    .img-placeholder { margin-top:10px; padding:10px; border:1px dashed #cbd5e1; border-radius:8px; color:#6b7280; font-size:12px; text-align:center; }
   </style>
 </head>
 <body>
@@ -141,6 +151,50 @@
         </tr>
       </tbody>
     </table>
+	<!-- two-column section: 今後の開発予定 / ご意見・ご要望 -->
+    <div class="post-sections">
+      <!-- 左：今後の開発予定 -->
+      <div class="post-col">
+        <div class="section-card">
+          <h3>今後の開発予定</h3>
+          <p class="muted">
+            <strong>まず最初に：</strong>この拡張は<strong>コード初心者が生成AIと協力して開発</strong>しています。時間がかかる場合がありますが、<strong>ご要望が多いものはできる限り頑張って実装</strong>していきます。温かい目で見守っていただけると嬉しいです。
+          </p>
+          <p class="muted">
+            記載内容はあくまで<strong>開発予定</strong>です（未実装の場合があります）。<strong>ご利用状況やフィードバック</strong>に応じて内容・優先度は変わることがあり、上から順に着手することを保証するものではありません。
+          </p>
+          <ul>
+            <li><strong>同期機能</strong>：Googleアカウントで見出しを同期し、別PCでも同じ見出しにアクセス可能に</li>
+            <li><strong>見出しのカテゴリ分け</strong>：A/Bなどテーマ単位でページ・見出しを登録し、エクスポート／インポートでカテゴリごとの使い分けも</li>
+            <li><strong>保存された見出しの管理画面</strong>：一覧・検索・並び替え等の管理UI</li>
+            <li><strong>外部サービス連携</strong>：Evernote / Google Keep などとの連携</li>
+            <li><strong>メモ機能</strong>：見出しにあわせて短いメモも登録・表示</li>
+            <li><strong>UI全体と支払い・プラン管理の使いやすさ改善</strong>：操作導線や設定まわりを順次ブラッシュアップ</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 右：ご意見・ご要望 -->
+      <div class="post-col">
+        <div class="section-card">
+          <h3>ご意見・ご要望</h3>
+          <p>
+            開発は<strong>ユーザー環境の使い勝手を最優先</strong>に進めています。いただいたご意見はすべて確認し、<strong>重要度や共通性の高いものから優先して実装</strong>していく方針です。短い一言でも大歓迎です。
+          </p>
+          <p class="muted">
+            フォームは<strong>日本語版／英語版</strong>を用意予定です。下のボタンから送信できます（URLは後で設定します）。また、<strong>ポップアップ右下の「ご意見」ボタン</strong>からも送信できます。
+            回答は<strong>後から修正（上書き）</strong>できる設定にする予定なので、まずは使ってみてから内容を更新していただいて問題ありません。
+          </p>
+          <div class="actions" style="text-align:left;">
+            <a class="btn" href="#" id="feedback-ja">ご意見を送る（日本語フォーム）</a>
+          </div>
+          <div class="actions" style="text-align:left;">
+            <a class="btn" href="#" id="feedback-en">Send feedback (English form)</a>
+          </div>
+          <div class="img-placeholder">※ここに「ポップアップ右下のご意見ボタン」の画像を配置予定（画像は後ほど差し替え）</div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- Modals -->
   <div id="modal-first" class="modal-backdrop" aria-hidden="true">
