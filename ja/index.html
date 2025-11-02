@@ -73,15 +73,8 @@
     .post-sections { gap:20px; margin-top:32px; }
 	/* 開発予定（左カラム）のみ：囲い＆微調整 */
     .dev-list { background:#F8FAFF; border:1px solid #e5e7eb; border-radius:10px; padding:6px 12px; margin-top:8px; }
-    .dev-list ul { margin:4px 0 0 0; padding:0; list-style:none; } /* マーカーを自作して間隔を制御 */
-    .dev-list li { position:relative; padding-left:12px; margin:3px 0; } /* ← テキストとの間隔をここで最小化 */
-    .dev-list li::before {
-      content:"◦";                 /* 小さめ白抜き丸 */
-      position:absolute;
-      left:0; top:0.25em;          /* 縦位置微調整 */
-      font-size:12px; line-height:1;
-      color:#111;                  /* 必要なら #333 などに */
-	}
+    .dev-list ul { margin:4px 0 0 0; padding:0; list-style:none; } /* デフォの丸を無効化（・は本文で表示） */
+    .dev-list li { margin:3px 0; } /* 行間のみ維持。左インデントは不要 */
     .dev-notes p { font-size:12px; line-height:1.25; margin:2px 0; } /* ※注意書き：小さめ＆行間詰め（今回は触らない） */
   </style>
 </head>
