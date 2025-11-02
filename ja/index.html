@@ -75,12 +75,21 @@
     .post-sections { gap:20px; margin-top:32px; }
 	/* 左カラムだけ padding-top を 8px に（8 + .intro margin-top 10 = 18px） */
     .post-sections .post-col:first-child .section-card { padding-top:8px; }
+	/* 右カラムも上側余白を左と同じ18pxに（= padding-top:8px 相当） */
+    .post-sections .post-col:last-child .section-card { padding-top:8px; }
 	/* 開発予定（左カラム）のみ：囲い＆微調整 */
     .dev-list { background:#F8FAFF; border:1px solid #e5e7eb; border-radius:10px; padding:6px 12px; margin-top:8px; }
     .dev-list ul { margin:4px 0 0 0; padding:0; list-style:none !important; } /* デフォの丸を完全無効化（・は本文で表示） */
     .dev-list li { margin:3px 0; font-size:13px; } /* 説明=13px（li全体） */
     .dev-list li strong { font-size:15px; }        /* タイトル=15px（太字部） */
     .dev-notes p { font-size:12px; line-height:1.25; margin:2px 0; } /* ※注意書き：小さめ＆行間詰め（今回は触らない） */
+	/* 右カラム：テキスト＋画像の2カラム風配置（1:2 / 画像は右1/3程度） */
+    .feedback-flex { display:flex; align-items:flex-start; gap:12px; }
+    .feedback-text { flex:2; }
+    .feedback-fig  { flex:1; display:flex; justify-content:flex-end; }
+    .feedback-img  { width:100%; max-width:180px; aspect-ratio:1/1; background:#f1f5f9; border:1px dashed #cbd5e1; border-radius:8px; }
+    /* 右カラム：フォームボタンを左右中央に */
+    .actions.center { text-align:center !important; }
   </style>
 </head>
 <body>
@@ -197,15 +206,18 @@
         <h3 class="section-title">ご意見・ご要望</h3>
         <div class="section-card">
           <p>開発は<strong>ユーザー環境の使い勝手を最優先</strong>に進めています。いただいたご意見はすべて確認し、<strong>重要度や共通性の高いものから優先して実装</strong>していく方針です。短い一言でも大歓迎です。</p>
-          <p class="muted">フォームは<strong>日本語版／英語版</strong>を用意予定です。下のボタンから送信できます（URLは後で設定します）。また、<strong>ポップアップ右下の「ご意見」ボタン</strong>からも送信できます。</p>
-          <p class="muted">回答は<strong>後から修正（上書き）</strong>できる設定にする予定です。まずは使ってみて、タイミングに合わせてご意見を更新していただいて問題ありません。</p>
-          <div class="actions" style="text-align:left;">
+          <div class="feedback-flex">
+            <div class="feedback-text">
+              <p class="muted">また、<strong>ポップアップ右下の「ご意見」ボタン</strong>からも送信できます。</p>
+              <p class="muted">ご意見は<strong>後から修正（上書き）</strong>できます。まずは使ってみて、タイミングに合わせて更新してください。</p>
+            </div>
+            <div class="feedback-fig">
+              <div class="feedback-img" aria-label="ポップアップ右下のご意見ボタンの画像（1:1）"></div>
+            </div>
+          </div>
+          <div class="actions center">
             <a class="btn" href="#" id="feedback-ja">ご意見を送る（日本語フォーム）</a>
           </div>
-          <div class="actions" style="text-align:left;">
-            <a class="btn" href="#" id="feedback-en">Send feedback (English form)</a>
-          </div>
-          <div class="img-placeholder">※ここに「ポップアップ右下のご意見ボタン」の画像を配置予定（画像は後ほど差し替え）</div>
         </div>
       </div>
     </div>
