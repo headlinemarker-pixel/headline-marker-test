@@ -28,12 +28,45 @@
     .pricing-table tbody tr:nth-child(odd) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数）：濃さ+2% */
     .pricing-table tbody tr.cta-row th,
     .pricing-table tbody tr.cta-row td { background: rgba(99,102,241,.16); }               /* 最終行：帯感を強化 */
+	/* --- top banners (2枚看板) --- */
+    .top-banners { display:flex; gap:12px; margin:16px auto 20px; max-width:880px; }
+    .banner-card { flex:1 1 0; border:1px solid #e5e7eb; border-radius:12px; padding:14px 16px; background:#fff; font-weight:700; cursor:pointer; }
+    .banner-card:hover { box-shadow:0 2px 8px rgba(0,0,0,.06); }
+    .banner-card small{ display:block; font-weight:500; color:#6b7280; margin-top:4px; }
+
+    /* --- row highlight --- */
+    .row-highlight { outline:3px solid #ef4444; outline-offset:-3px; transition:outline-color .2s; }
+
+    /* --- merged row (行B) layout --- */
+    .merged-cell { padding:8px 12px; }
+    .merged-flex { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .merged-title { font-weight:700; }
+    .merged-actions .btn { white-space:nowrap; }
+
+    /* --- modal --- */
+    .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:1000; }
+    .modal { width:min(520px, 90vw); background:#fff; border-radius:12px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.2); }
+    .modal h3 { margin:0 0 8px; font-size:18px; }
+    .modal p { margin:0 0 12px; line-height:1.6; }
+    .modal .actions { display:flex; gap:8px; justify-content:flex-end; margin-top:12px; }
+    .btn-outline { display:inline-block; padding:10px 16px; border-radius:8px; background:#fff; border:1px solid #e5e7eb; color:#111; text-decoration:none; font-weight:600; }
+    .modal-backdrop.show { display:flex; }
   </style>
 </head>
 <body>
   <div class="title">
     <img src="../assets/icons/hm-38.png" alt="Headline Marker" />
     <h1>Headline Marker プラン比較（テスト）</h1>
+  </div>
+  <div class="top-banners">
+    <button class="banner-card" id="banner-first">
+      はじめての方
+      <small>初めてのご購入はこちら（行Aを強調表示）</small>
+    </button>
+    <button class="banner-card" id="banner-existing">
+      ご利用中・ご利用経験のある方
+      <small>プラン変更・支払い管理はこちら（行Bを強調表示）</small>
+    </button>
   </div>
 
   <div class="pricing" style="max-width: 880px; margin: 0 auto;">
@@ -85,21 +118,103 @@
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">—</td>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>あり</strong></td>
         </tr>
-		<tr class="cta-row">
-          <th style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;"></th>
+		<tr id="row-first" class="cta-row">
+          <th style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;">初めて利用する方</th>
+          <td style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;">—</td>
           <td style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;">
-            <a class="btn" href="https://billing.stripe.com/p/login/test_dRm6oz4cU6RGeUz1XMaEE00" target="_blank" rel="noopener">プランを選択</a>
+            <a class="btn" href="#" data-checkout="https://buy.stripe.com/test_dRm6oz4cU6RGeUz1XMaEE00" onclick="return openFirstModal(this)">プランを選択</a>
           </td>
           <td style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;">
-            <a class="btn" href="https://buy.stripe.com/test_dRm6oz4cU6RGeUz1XMaEE00" target="_blank" rel="noopener">プランを選択</a>
+            <a class="btn" href="#" data-checkout="https://buy.stripe.com/test_aFadR14cU1xm4fV59YaEE01" onclick="return openFirstModal(this)">プランを選択</a>
           </td>
-          <td style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;">
-            <a class="btn" href="https://buy.stripe.com/test_aFadR14cU1xm4fV59YaEE01" target="_blank" rel="noopener">プランを選択</a>
-          </td>
+        </tr>
+        <tr id="row-existing" class="cta-row">
+          <th style="border:1px solid #e5e7eb;padding:0;text-align:center;" colspan="4">
+            <div class="merged-cell">
+              <div class="merged-flex">
+               <div class="merged-title">既にご利用経験のある方（解約済み含む）</div>
+                <div class="merged-actions">
+                  <a class="btn" href="#" onclick="return openExistingModal()">プラン変更・支払い管理</a>
+                </div>
+              </div>
+            </div>
+          </th>
         </tr>
       </tbody>
     </table>
     <div class="muted" style="text-align:center;">※有料プランをご利用中の方は、解約でFreeに戻ります。</div>
   </div>
+  <!-- Modals -->
+  <div id="modal-first" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mf-title">
+      <h3 id="mf-title">初めてのご利用ですか？</h3>
+      <p>これは <strong>「初めて課金する方」向け</strong> のリンクです。<br>既に利用済み・過去に利用済みの方は、下段の <strong>「プラン変更・支払い管理」</strong> からお進みください。</p>
+      <div class="actions">
+        <button class="btn-outline" data-close="modal-first">キャンセル</button>
+        <button class="btn" id="mf-ok">OK（支払い画面へ）</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-existing" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="me-title">
+      <h3 id="me-title">既存ユーザー向けのページです</h3>
+      <p><strong>現在または過去に有料プランをご利用の方</strong>のページです。<br><strong>購入時に使用したメールアドレス</strong>でログインしてください（<strong>別メールでは見つかりません</strong>）。<br><strong>見つからない／ログインできない場合</strong>は、上段の <strong>「初めて利用する方」</strong> から購入してください。<br>※カスタマーポータルでは、<strong>プラン変更・解約・再開</strong>が可能です。</p>
+      <div class="actions">
+        <button class="btn-outline" data-close="modal-existing">キャンセル</button>
+        <button class="btn" id="me-ok">OK（カスタマーポータルへ）</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Config
+    const PORTAL_LOGIN_URL = "https://billing.stripe.com/p/login/test_dRm6oz4cU6RGeUz1XMaEE00";
+
+    // Row highlight helper (5s)
+    function highlightRowById(id){
+      const row = document.getElementById(id);
+      if(!row) return;
+      row.classList.add('row-highlight');
+      row.scrollIntoView({ behavior:'smooth', block:'center' });
+      setTimeout(()=>row.classList.remove('row-highlight'), 5000);
+    }
+
+    // Top banners
+    document.getElementById('banner-first')?.addEventListener('click', ()=> highlightRowById('row-first'));
+    document.getElementById('banner-existing')?.addEventListener('click', ()=> highlightRowById('row-existing'));
+
+    // First-time modal
+    let pendingCheckoutUrl = null;
+    window.openFirstModal = function(el){
+      pendingCheckoutUrl = el.getAttribute('data-checkout');
+      document.getElementById('modal-first').classList.add('show');
+      return false;
+    };
+    document.getElementById('mf-ok').addEventListener('click', ()=>{
+      const url = pendingCheckoutUrl;
+      pendingCheckoutUrl = null;
+      document.getElementById('modal-first').classList.remove('show');
+      if(url) window.open(url, '_blank', 'noopener');
+    });
+
+    // Existing modal
+    window.openExistingModal = function(){
+      document.getElementById('modal-existing').classList.add('show');
+      return false;
+    };
+    document.getElementById('me-ok').addEventListener('click', ()=>{
+      document.getElementById('modal-existing').classList.remove('show');
+      window.open(PORTAL_LOGIN_URL, '_blank', 'noopener');
+    });
+
+    // Close buttons
+    document.querySelectorAll('[data-close]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const id = btn.getAttribute('data-close');
+        document.getElementById(id)?.classList.remove('show');
+      });
+    });
+  </script>
 </body>
 </html>
