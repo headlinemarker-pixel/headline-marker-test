@@ -43,7 +43,7 @@
     .merged-cell { padding:8px 12px; }
     .merged-flex { display:flex; align-items:center; gap:12px; } /* 右側ボタンを中央寄せできるようsp-betweenを除去 */
     .merged-title { font-weight:700; flex:1; }                   /* 左側タイトルが左半分を占有 */
-    .merged-actions .btn { white-space:nowrap; }
+    .merged-actions .btn { white-space:nowrap; min-width: calc(33.333% + 48px); } /* 基本1列分より少し長く（左右に少しはみ出す） */
 	.merged-actions { flex:1; display:flex; justify-content:center; } /* 右側セルで左右中央寄せ */
 
     /* --- modal --- */
