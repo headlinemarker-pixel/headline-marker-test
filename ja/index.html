@@ -28,6 +28,7 @@
     .pricing-table tbody tr:nth-child(odd) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数）：濃さ+2% */
     .pricing-table tbody tr.cta-row th,
     .pricing-table tbody tr.cta-row td { background: rgba(99,102,241,.16); }               /* 最終行：帯感を強化 */
+	#row-existing th { border-top:2px solid #e5e7eb !important; } /* 行A/Bの境界線を明確に */
 	/* --- top banners (2枚看板) --- */
     .top-banners { display:flex; gap:12px; margin:16px auto 20px; max-width:880px; }
     .banner-card { flex:1 1 0; border:1px solid #e5e7eb; border-radius:12px; padding:14px 16px; background:#fff; font-weight:700; cursor:pointer; }
@@ -39,9 +40,10 @@
 
     /* --- merged row (行B) layout --- */
     .merged-cell { padding:8px 12px; }
-    .merged-flex { display:flex; align-items:center; justify-content:space-between; gap:12px; }
-    .merged-title { font-weight:700; }
+    .merged-flex { display:flex; align-items:center; gap:12px; } /* 右側ボタンを中央寄せできるようsp-betweenを除去 */
+    .merged-title { font-weight:700; flex:1; }                   /* 左側タイトルが左半分を占有 */
     .merged-actions .btn { white-space:nowrap; }
+	.merged-actions { flex:1; display:flex; justify-content:center; } /* 右側セルで左右中央寄せ */
 
     /* --- modal --- */
     .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,.45); display:none; align-items:center; justify-content:center; z-index:1000; }
@@ -132,7 +134,7 @@
           <th style="border:1px solid #e5e7eb;padding:0;text-align:center;" colspan="4">
             <div class="merged-cell">
               <div class="merged-flex">
-               <div class="merged-title">既にご利用経験のある方（解約済み含む）</div>
+               <div class="merged-title">既にご利用経験のある方<br>（解約済み含む）</div>
                 <div class="merged-actions">
                   <a class="btn" href="#" onclick="return openExistingModal()">プラン変更・支払い管理</a>
                 </div>
