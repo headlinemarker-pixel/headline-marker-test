@@ -71,6 +71,10 @@
     .img-placeholder { margin-top:10px; padding:10px; border:1px dashed #cbd5e1; border-radius:8px; color:#6b7280; font-size:12px; text-align:center; }
     /* カード間の見通しを少し良く */
     .post-sections { gap:20px; margin-top:32px; }
+	/* 開発予定（左カラム）のみ：囲い＆微調整 */
+    .dev-list { background:#F8FAFF; border:1px solid #e5e7eb; border-radius:10px; padding:10px 12px; margin-top:8px; }
+    .dev-list ul { margin:8px 0 0 1ch; list-style-type: circle; }  /* ←インデントを“1文字幅”に */
+    .dev-notes p { font-size:12px; line-height:1.25; margin:2px 0; } /* ※注意書き：小さめ＆行間詰め */
   </style>
 </head>
 <body>
@@ -164,17 +168,21 @@
         <h3 class="section-title">今後の開発予定</h3>
         <div class="section-card">
           <p class="intro"><strong>はじめに：</strong>この拡張は<strong>コード初心者が生成AIと協力して開発</strong>しています。時間がかかる場合がありますが、<strong>ご要望が多いものはできる限り実装</strong>していきます。温かい目で見守っていただけると嬉しいです。</p>
-          <ul>
-            <li><strong>同期機能</strong>：<br>Googleアカウントで見出しを同期し、別PCでも同じ見出しにアクセス可能に</li>
-            <li><strong>見出しのカテゴリ分け</strong>：<br>A/Bなどテーマ単位でページ・見出しを登録し、エクスポート／インポートでカテゴリごとの使い分けも</li>
-            <li><strong>保存された見出しの管理画面</strong>：<br>一覧・検索・並び替え等の管理UI</li>
-            <li><strong>外部サービス連携</strong>：<br>Evernote / Google Keep などとの連携</li>
-            <li><strong>メモ機能</strong>：<br>見出しにあわせて短いメモも登録・表示</li>
-            <li><strong>UI全体と支払い・プラン管理の使いやすさ改善</strong>：<br>操作導線や設定まわりを順次ブラッシュアップ</li>
-          </ul>
-		  <p>※ 記載内容はあくまで<strong>開発予定</strong>です（未実装の場合があります）。</p>
-          <p>※ <strong>ご利用状況やフィードバック</strong>に応じて内容・優先度は変わることがあります。</p>
-          <p>※ 上から順に着手することを保証するものではありません。</p>
+          <div class="dev-list">
+            <ul>
+              <li><strong>同期機能</strong>：<br>Googleアカウントで見出しを同期し、別PCでも同じ見出しにアクセス可能に</li>
+              <li><strong>見出しのカテゴリ分け</strong>：<br>A/Bなどテーマ単位でページ・見出しを登録し、エクスポート／インポートでカテゴリごとの使い分けも</li>
+              <li><strong>保存された見出しの管理画面</strong>：<br>一覧・検索・並び替え等の管理UI</li>
+              <li><strong>外部サービス連携</strong>：<br>Evernote / Google Keep などとの連携</li>
+              <li><strong>メモ機能</strong>：<br>見出しにあわせて短いメモも登録・表示</li>
+              <li><strong>UI全体と支払い・プラン管理の使いやすさ改善</strong>：<br>操作導線や設定まわりを順次ブラッシュアップ</li>
+            </ul>
+          </div>
+          <div class="dev-notes">
+            <p>※ 記載内容はあくまで<strong>開発予定</strong>です（未実装の場合があります）。</p>
+            <p>※ <strong>ご利用状況やフィードバック</strong>に応じて内容・優先度は変わることがあります。</p>
+            <p>※ 上から順に着手することを保証するものではありません。</p>
+          </div>
         </div>
       </div>
 
