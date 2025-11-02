@@ -35,6 +35,8 @@
     .banner-card { flex:1 1 0; border:1px solid #e5e7eb; border-radius:12px; padding:14px 16px; background:#fff; font-weight:700; cursor:pointer; }
     .banner-card:hover { box-shadow:0 2px 8px rgba(0,0,0,.06); }
     .banner-card small{ display:block; font-weight:500; color:#6b7280; margin-top:4px; }
+	/* 看板の赤枠（行より細い 2px） */
+    .banner-highlight { outline:2px solid #ef4444; outline-offset:-2px; }
 
     /* --- row highlight --- */
     .row-highlight { outline:3px solid #ef4444; outline-offset:-3px; transition:outline-color .2s; }
@@ -71,6 +73,8 @@
     .img-placeholder { margin-top:10px; padding:10px; border:1px dashed #cbd5e1; border-radius:8px; color:#6b7280; font-size:12px; text-align:center; }
     /* カード間の見通しを少し良く */
     .post-sections { gap:20px; margin-top:32px; }
+	/* 左カラムだけ padding-top を 8px に（8 + .intro margin-top 10 = 18px） */
+    .post-sections .post-col:first-child .section-card { padding-top:8px; }
 	/* 開発予定（左カラム）のみ：囲い＆微調整 */
     .dev-list { background:#F8FAFF; border:1px solid #e5e7eb; border-radius:10px; padding:6px 12px; margin-top:8px; }
     .dev-list ul { margin:4px 0 0 0; padding:0; list-style:none !important; } /* デフォの丸を完全無効化（・は本文で表示） */
@@ -246,9 +250,21 @@
       setTimeout(()=>row.classList.remove('row-highlight'), 5000);
     }
 
-    // Top banners
-    document.getElementById('banner-first')?.addEventListener('click', ()=> highlightRowById('row-first'));
-    document.getElementById('banner-existing')?.addEventListener('click', ()=> highlightRowById('row-existing'));
+    // Top banners（行の強調に加えて看板自体も赤枠・5秒）
+    function highlightBanner(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.classList.add('banner-highlight');
+      setTimeout(()=> el.classList.remove('banner-highlight'), 5000);
+    }
+    document.getElementById('banner-first')?.addEventListener('click', ()=>{
+      highlightRowById('row-first');
+      highlightBanner('banner-first');
+    });
+    document.getElementById('banner-existing')?.addEventListener('click', ()=>{
+      highlightRowById('row-existing');
+      highlightBanner('banner-existing');
+    });
 
     // First-time modal
     let pendingCheckoutUrl = null;
