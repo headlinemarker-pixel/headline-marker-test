@@ -28,7 +28,8 @@
     .pricing-table tbody tr:nth-child(odd) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数）：濃さ+2% */
     .pricing-table tbody tr.cta-row th,
     .pricing-table tbody tr.cta-row td { background: rgba(99,102,241,.16); }               /* 最終行：帯感を強化 */
-	#row-existing th, #row-existing td { border-top:1px solid #cbd5e1 !important; } /* 行A/Bの境界線（太さ据え置き・色だけ工夫） */
+	#row-existing th, #row-existing td { border-top:1px solid #cbd5e1 !important; } /* 行A/Bの境界線（上側） */
+	#row-first    th, #row-first    td { border-bottom:1px solid #cbd5e1 !important; } /* 行A/Bの境界線（下側） */
 	/* --- top banners (2枚看板) --- */
     .top-banners { display:flex; gap:12px; margin:16px auto 20px; max-width:880px; }
     .banner-card { flex:1 1 0; border:1px solid #e5e7eb; border-radius:12px; padding:14px 16px; background:#fff; font-weight:700; cursor:pointer; }
@@ -121,7 +122,7 @@
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>あり</strong></td>
         </tr>
 		<tr id="row-first" class="cta-row">
-          <th style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;">初めて利用する方</th>
+          <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">初めて利用する方</th>
           <td style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;">—</td>
           <td style="border:1px solid #e5e7eb;padding:8px 0.5em;text-align:center;">
             <a class="btn" href="#" data-checkout="https://buy.stripe.com/test_dRm6oz4cU6RGeUz1XMaEE00" onclick="return openFirstModal(this)">プランを選択</a>
