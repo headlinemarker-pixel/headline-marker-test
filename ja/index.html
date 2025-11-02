@@ -64,11 +64,11 @@
   <div class="top-banners">
     <button class="banner-card" id="banner-first">
       はじめての方
-      <small>初めてのご購入はこちら</small>
+      <small>クリックすると該当欄が強調表示されます</small>
     </button>
     <button class="banner-card" id="banner-existing">
       ご利用中・ご利用経験のある方
-      <small>プラン変更・支払い管理はこちら</small>
+      <small>クリックすると該当欄が強調表示されます</small>
     </button>
   </div>
 
@@ -147,10 +147,10 @@
   <div id="modal-first" class="modal-backdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mf-title">
       <h3 id="mf-title">初めてのご利用ですか？</h3>
-      <p>これは <strong>「初めて課金する方」向け</strong> のリンクです。<br>既に利用済み・過去に利用済みの方は、下段の <strong>「プラン変更・支払い管理」</strong> からお進みください。</p>
+      <p>これは <strong>「初めて有料プランに申し込む方」向け</strong> のリンクです。<br>既に有料プランに利用済み・過去に有料プランを利用したことがある方は、この画面を閉じた後、下段の <strong>「プラン変更・支払い管理」</strong> からお進みください。</p>
       <div class="actions">
-        <button class="btn-outline" data-close="modal-first">キャンセル</button>
-        <button class="btn" id="mf-ok">OK（支払い画面へ）</button>
+        <button class="btn-outline" data-close="modal-first">閉じる</button>
+        <button class="btn" id="mf-ok">続行（支払い画面へ）</button>
       </div>
     </div>
   </div>
@@ -158,10 +158,12 @@
   <div id="modal-existing" class="modal-backdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="me-title">
       <h3 id="me-title">既存ユーザー向けのページです</h3>
-      <p><strong>現在または過去に有料プランをご利用の方</strong>のページです。<br><strong>購入時に使用したメールアドレス</strong>でログインしてください（<strong>別メールでは見つかりません</strong>）。<br><strong>見つからない／ログインできない場合</strong>は、上段の <strong>「初めて利用する方」</strong> から購入してください。<br>※カスタマーポータルでは、<strong>プラン変更・解約・再開</strong>が可能です。</p>
+      <p>ご購入時のメールアドレスで本人確認を行ってください。<br>
+      それ以外のメールではお客様情報が見つかりません。<br>
+      もし以前のメールアドレスが分からない場合は、上段の <strong>「初めて利用する方」</strong> からプランを選択して、新しいメールで本人確認し、ご購入いただけます。</p>
       <div class="actions">
-        <button class="btn-outline" data-close="modal-existing">キャンセル</button>
-        <button class="btn" id="me-ok">OK（カスタマーポータルへ）</button>
+        <button class="btn-outline" data-close="modal-existing">閉じる</button>
+        <button class="btn" id="me-ok">続行（プラン・支払い管理へ）</button>
       </div>
     </div>
   </div>
