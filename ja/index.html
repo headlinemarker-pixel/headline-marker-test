@@ -90,6 +90,26 @@
     .feedback-img  { width:100%; max-width:none; height:auto; background:#f1f5f9; border:1px dashed #cbd5e1; border-radius:8px; }
     /* 右カラム：フォームボタンを左右中央に */
     .actions.center { text-align:center !important; }
+	/* --- Pro列（開発中）オーバーレイ --- */
+    .pro-col{
+      position:relative;
+      color:transparent;           /* 元のテキストは見えなくする（幅は維持） */
+    }
+    .pro-col::before{
+      content:"現在開発中です\A正式リリース時に機能一覧を公開します";
+      white-space:pre-line;
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px;
+      text-align:center;
+      font-size:13px;
+      color:#111827;
+      background:rgba(255,255,255,.82);  /* 半透明の白 */
+      backdrop-filter:blur(3px);         /* 軽いぼかし（対応ブラウザのみ） */
+    }
   </style>
 </head>
 <body>
@@ -126,36 +146,37 @@
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>3件まで</strong></td>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>無制限</strong></td>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>無制限</strong></td>
+		  <td class="pro-col" style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>無制限</strong></td>
         </tr>
         <tr>
           <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">登録可能ページ数</th>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>3ページまで</strong></td>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>5ページまで</strong></td>
-          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>無制限</strong></td>
+          <td class="pro-col" style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>無制限</strong></td>
         </tr>
         <tr>
           <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">ハイライトカラー数</th>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">2色</td>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">全色（12色）</td>
-          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">全色（12色）</td>
+          <td class="pro-col" style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">全色（12色）</td>
         </tr>
         <tr>
           <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">テキストカラー数</th>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">2色（黒／白）</td>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">全色（3色）</td>
-          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">全色（3色）</td>
+          <td class="pro-col" style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">全色（3色）</td>
         </tr>
         <tr>
           <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">テキストスタイル変更</th>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">—</td>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">〇</td>
-          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">〇</td>
+          <td class="pro-col" style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">〇</td>
         </tr>
         <tr>
           <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">バックアップ機能</th>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">—</td>
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">—</td>
-          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">〇</td>
+          <td class="pro-col" style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">〇</td>
         </tr>
 		<tr id="row-first" class="cta-row">
           <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">初めて利用する方</th>
