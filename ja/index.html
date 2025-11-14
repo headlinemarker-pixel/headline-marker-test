@@ -103,10 +103,11 @@
       text-align:center;
       font-size:13px;
       color:#111827;
-      background:rgba(255,255,255,.8);   /* 半透明の白（下の行ストライプがうっすら見える） */
+      background:rgba(255,255,255,.65);  /* 以前より少し薄く */
       backdrop-filter:blur(3px);
-      pointer-events:none;               /* クリックは下のセルに通さないように */
-      border-radius:4px;
+      pointer-events:none;               /* クリックは下のセルに通す */
+      border-radius:0;                   /* いったん全角を直角に */
+      border-bottom-right-radius:12px;   /* 右下だけ、表の角丸に合わせる */
     }
   </style>
 </head>
@@ -346,8 +347,8 @@
       overlay.textContent = "現在開発中です\n正式リリース時に機能一覧を公開します";
       overlay.style.left   = (first.left  - base.left) + "px";
       overlay.style.top    = (first.top   - base.top)  + "px";
-      overlay.style.width  = (first.right - first.left) + "px";
-      overlay.style.height = (last.bottom - first.top) + "px";
+      overlay.style.width  = (first.right - first.left - 2) + "px";
+      overlay.style.height = (last.bottom - first.top - 2) + "px";
 
       wrap.appendChild(overlay);
     })();
