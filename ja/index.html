@@ -23,7 +23,7 @@
     .muted { color:#6b7280; font-size:12px; margin-top:8px; }
 	/* --- table decorations --- */
     .pricing-table{ box-shadow:0 0 0 2px #c7d2fe; border-radius:12px; overflow:hidden; }  /* 外枠だけを太く見せるフレーム */
-    .pricing-table thead th { background: rgba(99,102,241,.12); }                          /* 見出し行：少しだけ濃く */
+    .pricing-table thead th { background: rgba(99,102,241,.16); border-bottom: none; }                          /* 見出し行：少しだけ濃く */
     .pricing-table tbody tr:nth-child(odd) th,
     .pricing-table tbody tr:nth-child(odd) td:not(.pro-col) { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数）：Pro列は除外 */
     .pricing-table tbody tr.cta-row th,
@@ -140,10 +140,10 @@
       </thead>
       <tbody>
         <!-- 価格行 -->
-        <tr>
-          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">月額料金（税込）</th>
-          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;"><strong>¥0</strong></td>
-          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">
+        <tr class="cta-row">
+          <th style="border:1px solid #e5e7eb; border-top:none; border-bottom:2px solid #cbd5e1; padding:12px 14px;text-align:center;">月額料金（税込）</th>
+          <td style="border:1px solid #e5e7eb; border-top:none; border-bottom:2px solid #cbd5e1; padding:12px 14px;text-align:center;"><strong>¥0</strong></td>
+          <td style="border:1px solid #e5e7eb; border-top:none; border-bottom:2px solid #cbd5e1; padding:12px 14px;text-align:center;">
             <strong>¥360 / 月</strong><br><small>リリース記念キャンペーン</small>
           </td>
           <td class="pro-col" rowspan="9" style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">
@@ -181,9 +181,9 @@
           <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">〇</td>
         </tr>
         <tr>
-          <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">バックアップ機能</th>
-          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">—</td>
-          <td style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">—</td>
+          <th style="border:1px solid #e5e7eb; border-bottom:2px solid #cbd5e1; padding:12px 14px;text-align:center;">バックアップ機能</th>
+          <td style="border:1px solid #e5e7eb; border-bottom:2px solid #cbd5e1; padding:12px 14px;text-align:center;">—</td>
+          <td style="border:1px solid #e5e7eb; border-bottom:2px solid #cbd5e1; padding:12px 14px;text-align:center;">—</td>
         </tr>
 		<tr id="row-first" class="cta-row">
           <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">初めて利用する方</th>
