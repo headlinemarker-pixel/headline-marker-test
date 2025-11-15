@@ -22,7 +22,19 @@
     .btn:hover { filter:brightness(0.95); }
     .muted { color:#6b7280; font-size:12px; margin-top:8px; }
 	/* --- table decorations --- */
-    .pricing-table{ box-shadow:0 0 0 2px #c7d2fe; border-radius:12px; overflow:hidden; }  /* 外枠だけを太く見せるフレーム */
+    .pricing-table{
+      width:100%;
+      table-layout:fixed;                     /* 列幅を割合指定で固定し、ブラウザ任せを避ける */
+      box-shadow:0 0 0 2px #c7d2fe;
+      border-radius:12px;
+      overflow:hidden;                        /* 角丸を効かせるため */
+    }  /* 外枠だけを太く見せるフレーム */
+    .pricing-table th,
+    .pricing-table td{
+      word-wrap:break-word;                   /* 長い語もセル内で折り返す */
+      white-space:normal;
+      font-size:15px;                         /* 標準より少しだけ小さくして詰まりすぎを防ぐ */
+    }
     .pricing-table thead th { background: rgba(99,102,241,.12); }                          /* 見出し行：少しだけ濃く */
     .pricing-table tbody tr:nth-child(odd) th,
     .pricing-table tbody tr:nth-child(odd) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数）：濃さ+2% */
@@ -31,7 +43,7 @@
 	#row-existing th, #row-existing td { border-top:1px solid #cbd5e1 !important; } /* 行A/Bの境界線（上側） */
 	#row-first    th, #row-first    td { border-bottom:1px solid #cbd5e1 !important; } /* 行A/Bの境界線（下側） */
 	/* --- top banners (2枚看板) --- */
-    .top-banners { display:flex; gap:12px; margin:16px auto 20px; max-width:880px; }
+    .top-banners { display:flex; gap:12px; margin:16px auto 20px; max-width:760px; }
     .banner-card { flex:1 1 0; border:1px solid #e5e7eb; border-radius:12px; padding:14px 16px; background:#fff; font-weight:700; cursor:pointer; }
     .banner-card:hover { box-shadow:0 2px 8px rgba(0,0,0,.06); }
     .banner-card small{ display:block; font-weight:500; color:#6b7280; margin-top:4px; }
@@ -58,7 +70,7 @@
     .modal-backdrop.show { display:flex; }
 
     /* --- below: plans -> two columns (今後の開発予定 / ご意見) --- */
-    .post-sections { max-width:880px; margin:28px auto 0; display:flex; gap:16px; }
+    .post-sections { max-width:760px; margin:28px auto 0; display:flex; gap:16px; }
     .post-col { flex:1 1 0; }
     .section-card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px 18px; }
     /* 見出しはカード外に出すため、カード内h3の指定は廃止 */
@@ -92,7 +104,10 @@
     .actions.center { text-align:center !important; }
 
     /* --- Pro列（開発中）オーバーレイ --- */
-    .pricing-table-wrap { position:relative; }
+    .pricing-table-wrap {
+      position:relative;
+      overflow-x:auto;                  /* 幅が足りない環境では横スクロールで逃がす */
+    }
     .pro-col { position:relative; }
     .pro-overlay{
       position:absolute;
@@ -127,9 +142,15 @@
     </button>
   </div>
 
-  <div class="pricing" style="max-width: 880px; margin: 0 auto;">
+  <div class="pricing" style="max-width: 760px; margin: 0 auto;">
     <div class="pricing-table-wrap">
       <table class="pricing-table" style="width:100%;border-collapse:collapse;background:#fff;">
+      <colgroup>
+        <col style="width:42%;">   <!-- 機能列 -->
+        <col style="width:19%;">   <!-- Free -->
+        <col style="width:19%;">   <!-- Basic -->
+        <col style="width:20%;">   <!-- Pro -->
+      </colgroup>
       <thead>
         <tr>
           <th style="border:1px solid #e5e7eb;padding:12px 14px;text-align:center;">機能</th>
