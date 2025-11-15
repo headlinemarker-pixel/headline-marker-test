@@ -93,8 +93,9 @@
 
     /* --- Pro列（開発中）ハッチングセル --- */
     .pricing-table-wrap { position:relative; }
-    .pro-col{
-      /* 線の部分だけグレー、間は白として1本の background で描く */
+    .pricing-table tbody td.pro-col{
+      /* 線の部分だけグレー、間は白として1本の background で描く
+         行側のゼブラ背景よりもセレクタが強いので、こちらが優先される */
       background:
         repeating-linear-gradient(
           135deg,
