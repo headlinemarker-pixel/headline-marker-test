@@ -25,7 +25,7 @@
     .pricing-table{ box-shadow:0 0 0 2px #c7d2fe; border-radius:12px; overflow:hidden; }  /* 外枠だけを太く見せるフレーム */
     .pricing-table thead th { background: rgba(99,102,241,.12); }                          /* 見出し行：少しだけ濃く */
     .pricing-table tbody tr:nth-child(odd) th,
-    .pricing-table tbody tr:nth-child(odd) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数）：濃さ+2% */
+    .pricing-table tbody tr:nth-child(odd) td:not(.pro-col) { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数）：Pro列は除外 */
     .pricing-table tbody tr.cta-row th,
     .pricing-table tbody tr.cta-row td { background: rgba(99,102,241,.16); }               /* 最終行：帯感を強化 */
 	#row-existing th, #row-existing td { border-top:1px solid #cbd5e1 !important; } /* 行A/Bの境界線（上側） */
