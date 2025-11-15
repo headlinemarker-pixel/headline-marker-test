@@ -94,16 +94,15 @@
     /* --- Pro列（開発中）ハッチングセル --- */
     .pricing-table-wrap { position:relative; }
     .pro-col{
-      /* 細い斜線：線だけ色付き、間は真っ白 */
-      background-image:
+      /* 線の部分だけグレー、間は白として1本の background で描く */
+      background:
         repeating-linear-gradient(
           135deg,
-          #cbd5e1 0px,      /* 線の色（薄めのグレー） */
-          #cbd5e1 1px,      /* 線の太さ：1px */
-          transparent 1px,
-          transparent 6px   /* 線と線の間隔：5pxぶん空ける */
+          #ffffff 0px,
+          #ffffff 5px,   /* ここまで白 */
+          #cbd5e1 5px,   /* ここから1pxだけ線 */
+          #cbd5e1 6px    /* 線の太さ：1px → 間隔5px */
         );
-      background-color:#ffffff; /* 線と線の間は完全な白 */
       text-align:center;
       font-size:13px;
       line-height:1.8;
