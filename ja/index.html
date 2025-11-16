@@ -125,6 +125,9 @@
       <small>クリックすると該当欄が強調表示されます</small>
     </button>
   </div>
+  <p style="max-width:760px;margin:0 auto 8px;font-size:13px;color:#4b5563;">
+    〇：制限なく利用できる、△：制限があるが利用できる、×：利用できない
+  </p>
 
   <div class="pricing" style="max-width: 760px; margin: 0 auto;">
     <div class="pricing-table-wrap">
@@ -186,10 +189,10 @@
           <td style="border:1px solid #e5e7eb; border-bottom:2px solid #cbd5e1; padding:12px 14px;text-align:center;">—</td>
           <td style="border:1px solid #e5e7eb; border-bottom:2px solid #cbd5e1; padding:12px 14px;text-align:center;">—</td>
         </tr>
-		<tr id="row-first" class="cta-row">
-          <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">初めて利用する方</th>
-          <td style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">—</td>          <!-- Free 列の右境界を #cbd5e1 に -->
-          <td style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">               <!-- Basic 列の右境界を #cbd5e1 に -->
+		<tr id="row-existing" class="cta-row">
+          <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">既にご利用経験のある方<br>（解約済み含む）</th>
+          <td style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">—</td>
+          <td style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">
             <a class="btn" href="#" data-checkout="https://buy.stripe.com/test_dRm6oz4cU6RGeUz1XMaEE00" onclick="return openFirstModal(this)">プランを選択</a>
           </td>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">—</td>
@@ -203,6 +206,12 @@
             </div>
           </td>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">—</td>
+        </tr>
+        <tr>
+          <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">備考</th>
+          <td colspan="3" style="border:1px solid #e5e7eb; padding:8px 0.5em; font-size:12px; line-height:1.6; text-align:left;">
+            ※ 掲載している内容は予告なく変更される場合があります。最新の情報はストアページやお知らせをご確認ください。
+          </td>
         </tr>
       </tbody>
       </table>
