@@ -27,7 +27,7 @@
     .pricing-table tbody tr:nth-child(odd) th,
     .pricing-table tbody tr:nth-child(odd) td:not(.pro-col) { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数）：Pro列は除外 */
     .pricing-table tbody tr.cta-row th,
-    .pricing-table tbody tr.cta-row td { background: rgba(99,102,241,.16); }               /* 最終行：帯感を強化 */
+    .pricing-table tbody tr.cta-row td:not(.pro-col) { background: rgba(99,102,241,.16); } /* 最終行：帯感を強化（Pro列は除外） */
 	#row-existing th, #row-existing td { border-top:1px solid #cbd5e1 !important; } /* 行A/Bの境界線（上側） */
 	#row-first    th, #row-first    td { border-bottom:1px solid #cbd5e1 !important; } /* 行A/Bの境界線（下側） */
 	/* --- top banners (2枚看板) --- */
