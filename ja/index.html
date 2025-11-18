@@ -10,17 +10,12 @@
     :root { --brand:#6366F1; --bg:#EEF2FF; }
     body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Noto Sans", sans-serif; margin:0; padding:32px; color:#111; background:var(--bg); }
     h1 { font-size:24px; margin:0; }
-    .grid { display:flex; flex-wrap:wrap; gap:16px; }
     .title { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:24px; }
     .title img { width:28px; height:28px; }
-    .card { flex:1 1 280px; border:1px solid #e5e7eb; border-radius:12px; padding:20px; background:#fff; }
-    .card h2 { font-size:20px; margin:0 0 8px; }
-    .price { font-size:28px; font-weight:700; margin:8px 0 12px; }
     .actions { text-align:right; margin-top:8px; }
     ul { margin:0 0 16px 18px; }
     .btn { display:inline-block; padding:10px 16px; border-radius:8px; background:var(--brand); color:#fff; text-decoration:none; font-weight:600; }
     .btn:hover { filter:brightness(0.95); }
-    .muted { color:#6b7280; font-size:12px; margin-top:8px; }
 	/* --- table decorations --- */
     .pricing-table{ box-shadow:0 0 0 2px #c7d2fe; border-radius:12px; overflow:hidden; }  /* 外枠だけを太く見せるフレーム */
     .pricing-table th,
@@ -66,13 +61,7 @@
     /* 見出しはカード外に出すため、カード内h3の指定は廃止 */
     .post-col > .section-title { margin:0 0 8px; font-size:18px; font-weight:800; padding-left:0; text-align:center; }
     .section-card p { font-size:15px; line-height:1.2; margin:6px 0; }
-    .section-card .muted { color:#6b7280; font-size:12px; margin:8px 0 0; }
-	.section-card .muted { font-size:13px; line-height:1.7; margin:8px 0; }
     .section-card .intro { font-size:15px; line-height:1.2; margin:6px 0; color:#6b7280; }  /* 左カラム冒頭3文を本文サイズに統一 */
-    .section-card ul { margin:8px 0 0 1em; list-style-type: circle; } /* 左インデントを約1文字ぶんに */
-	.section-card li { margin:6px 0; }
-    .section-card .btn { margin-top:10px; }
-    .img-placeholder { margin-top:10px; padding:10px; border:1px dashed #cbd5e1; border-radius:8px; color:#6b7280; font-size:12px; text-align:center; }
     /* カード間の見通しを少し良く（縦並び） */
     .post-sections { margin-top:32px; }
     .post-col { margin-bottom:16px; }
@@ -81,18 +70,8 @@
 	/* 右カラムも上側余白を左と同じ18pxに（= padding-top:8px 相当） */
     .post-sections .post-col:last-child .section-card { padding-top:8px; }
 	/* 開発予定（左カラム）のみ：囲い＆微調整 */
-    .dev-list { background:#F8FAFF; border:1px solid #e5e7eb; border-radius:10px; padding:6px 12px; margin-top:8px; }
-    .dev-list ul { margin:4px 0 0 0; padding:0; list-style:none !important; } /* デフォの丸を完全無効化（・は本文で表示） */
-    .dev-list li { margin:3px 0; font-size:13px; } /* 説明=13px（li全体） */
-    .dev-list li strong { font-size:15px; }        /* タイトル=15px（太字部） */
-    .dev-notes p { font-size:12px; line-height:1.25; margin:2px 0; color:#6b7280; } /* ※注意書き：小さめ＆行間詰め（今回は触らない） */
 	/* 右カラム：テキスト＋画像の2カラム風配置（1:2 / 画像は右1/3程度） */
-    .feedback-flex { display:flex; align-items:flex-start; gap:12px; }
-    .feedback-text { flex:1; } /* 左右50:50に */
-    .feedback-fig  { flex:1; display:flex; justify-content:flex-end; }
-    .feedback-img  { width:100%; max-width:none; height:auto; background:#f1f5f9; border:1px dashed #cbd5e1; border-radius:8px; }
     /* 右カラム：フォームボタンを左右中央に */
-    .actions.center { text-align:center !important; }
 
     /* --- Pro列（開発中）ハッチングセル --- */
     .pricing-table-wrap { position:relative; }
