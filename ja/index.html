@@ -61,6 +61,11 @@
     .post-col > .section-title { margin:0 0 8px; font-size:18px; font-weight:800; padding-left:0; text-align:center; }
     .section-card p { font-size:15px; line-height:1.2; margin:6px 0; }
     .section-card .intro { font-size:15px; line-height:1.2; margin:6px 0; color:#6b7280; }  /* 左カラム冒頭3文を本文サイズに統一 */
+	/* お知らせ：左に日付、右に本文 */
+    .notice-list { margin-top:4px; }
+    .notice-item { display:flex; gap:8px; align-items:flex-start; font-size:14px; line-height:1.4; }
+    .notice-date { flex:0 0 90px; font-family:monospace; color:#4b5563; }
+    .notice-body { flex:1; }
     /* カード間の見通しを少し良く（縦並び） */
     .post-sections { margin-top:32px; }
     .post-col { margin-bottom:16px; }
@@ -213,8 +218,16 @@
       <div class="post-col">
         <h3 class="section-title">お知らせ</h3>
         <div class="section-card">
-          <p class="intro">現在、一部の有料機能（Proプラン）を開発中です。</p>
-          <p class="intro">大きなアップデートや仕様変更があった際は、このページとポップアップ内の通知でお知らせします。</p>
+          <div class="notice-list">
+            <div class="notice-item">
+              <span class="notice-date">2025-11-18</span>
+              <span class="notice-body">現在、Free/Standardでご利用いただける追加料機能を開発中です。（Freeは制限有の予定）</span>
+            </div>
+            <div class="notice-item">
+              <span class="notice-date">2025-11-18</span>
+              <span class="notice-body">大きなアップデートや仕様変更があった際は、このページとポップアップ内の通知でお知らせします。</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -225,7 +238,8 @@
           <div class="feedback-flex">
             <div class="feedback-text">
               <p class="intro">Headline Marker では、皆さんからいただいたフィードバックを大切にし、機能改善を進めています。</p>
-              <p class="intro">ポップアップ内の<strong>「ご意見」ボタン</strong>から、アンケート形式でご意見をおよせください。</p>
+              <p class="intro">ポップアップ内の<strong>「ご意見」</strong>ボタンから、アンケート形式でご意見をおよせください。</p>
+			  <p class="intro">アンケートは常時開かれており、後に更新（上書き）していただくこともできますので、いつでも更新してください。</p>
             </div>
             <div class="feedback-fig">
               <img
