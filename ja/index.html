@@ -65,12 +65,16 @@
     .post-sections { margin-top:32px; }
     .post-col { margin-bottom:16px; }
 	/* 左カラムだけ padding-top を 8px に（8 + .intro margin-top 10 = 18px） */
-    .post-sections .post-col:first-child .section-card { padding-top:8px; padding-bottom:8px; padding-bottom:8px;}
+    .post-sections .post-col:first-child .section-card { padding-top:8px; padding-bottom:8px; }
 	/* 右カラムも上側余白を左と同じ18pxに（= padding-top:8px 相当） */
     .post-sections .post-col:last-child .section-card { padding-top:8px; }
 	/* 開発予定（左カラム）のみ：囲い＆微調整 */
 	/* 右カラム：テキスト＋画像の2カラム風配置（1:2 / 画像は右1/3程度） */
     /* 右カラム：フォームボタンを左右中央に */
+    .feedback-flex { display:flex; gap:12px; align-items:flex-start; }
+    .feedback-text { flex:1; }
+    .feedback-fig  { flex:0 0 180px; display:flex; justify-content:flex-end; }
+    .feedback-img  { width:100%; height:auto; border:1px dashed #cbd5e1; border-radius:8px; background:#f1f5f9; }
 
     /* --- Pro列（開発中）ハッチングセル --- */
     .pricing-table-wrap { position:relative; }
@@ -218,8 +222,22 @@
       <div class="post-col">
         <h3 class="section-title">ご意見・ご要望</h3>
         <div class="section-card">
-          <p class="intro">Headline Marker では、皆さんからのご意見・ご要望を募集しています。短い一言でも大歓迎です。</p>
-          <p class="intro">ポップアップ内の<strong>「ご意見」ボタン</strong>から、いつでもお気軽にメッセージをお送りください。</p>
+          <div class="feedback-flex">
+            <div class="feedback-text">
+              <p class="intro">Headline Marker では、皆さんからいただいたフィードバックを大切にし、機能改善を進めています。</p>
+              <p class="intro">ポップアップ内の<strong>「ご意見」ボタン</strong>から、アンケート形式でご意見をおよせください。</p>
+            </div>
+            <div class="feedback-fig">
+              <img
+                class="feedback-img"
+                src="../assets/feedback-entry-ja.png"
+                alt="ポップアップ右下の『ご意見』ボタン"
+                loading="lazy"
+                width="180"
+                height="180"
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
