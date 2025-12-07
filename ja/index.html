@@ -7,7 +7,7 @@
   <!-- 検索除外（実質非公開テスト用） -->
   <meta name="robots" content="noindex, nofollow">
   <style>
-    :root { --brand:#6366F1; --bg:#EEF2FF; }
+    :root { --brand:#6366F1; --bg:#EEF2FF; --headbg:rgba(99,102,241,.16); }
     body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Noto Sans", sans-serif; margin:0; padding:32px; color:#111; background:var(--bg); }
     h1 { font-size:24px; margin:0; }
     .title { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:24px; }
@@ -20,11 +20,11 @@
     .pricing-table{ box-shadow:0 0 0 2px #c7d2fe; border-radius:12px; overflow:hidden; }  /* 外枠だけを太く見せるフレーム */
     .pricing-table th,
     .pricing-table td { font-weight:400; text-align:center !important; vertical-align:middle !important; }
-    .pricing-table thead th { background: rgba(99,102,241,.16); border-bottom: none; }                          /* 見出し行：少しだけ濃く */
-    .pricing-table tbody tr:nth-child(odd):not(.planned-section-row) th,
-    .pricing-table tbody tr:nth-child(odd):not(.planned-section-row) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数：開発予定以外） */
+    .pricing-table thead th { background: var(--headbg); border-bottom: none; }
+    .pricing-table tbody tr:nth-child(odd):not(.planned-section-row):not(.cta-row) th,
+    .pricing-table tbody tr:nth-child(odd):not(.planned-section-row):not(.cta-row) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数：開発予定以外＆CTA以外） */
     .pricing-table tbody tr.cta-row th,
-    .pricing-table tbody tr.cta-row td { background: rgba(99,102,241,.16); } /* 最終行：帯感を強化 */
+    .pricing-table tbody tr.cta-row td { background: var(--headbg); } /* 月額料金＋有料プラン行：ヘッダと同じ色 */
    #row-existing th, #row-existing td { border-top:2px solid #cbd5e1 !important; } /* 行A/Bの境界線（上側：2px） */
    #row-first    th, #row-first    td { border-top:2px solid #cbd5e1 !important; border-bottom:2px solid #cbd5e1 !important; } /* 行A/Bの境界線（上下：2px） */
 	/* --- top banners (2枚看板) --- */
