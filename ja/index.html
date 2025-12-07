@@ -22,9 +22,9 @@
     .pricing-table td { font-weight:400; }  /* テーブル内はデフォルトで太字解除（必要な箇所は <strong> で指定） */
     .pricing-table thead th { background: rgba(99,102,241,.16); border-bottom: none; }                          /* 見出し行：少しだけ濃く */
     .pricing-table tbody tr:nth-child(odd) th,
-    .pricing-table tbody tr:nth-child(odd) td:not(.pro-col) { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数）：Pro列は除外 */
+    .pricing-table tbody tr:nth-child(odd) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数） */
     .pricing-table tbody tr.cta-row th,
-    .pricing-table tbody tr.cta-row td:not(.pro-col) { background: rgba(99,102,241,.16); } /* 最終行：帯感を強化（Pro列は除外） */
+    .pricing-table tbody tr.cta-row td { background: rgba(99,102,241,.16); } /* 最終行：帯感を強化 */
 	#row-existing th, #row-existing td { border-top:1px solid #cbd5e1 !important; } /* 行A/Bの境界線（上側） */
 	#row-first    th, #row-first    td { border-bottom:1px solid #cbd5e1 !important; } /* 行A/Bの境界線（下側） */
 	/* --- top banners (2枚看板) --- */
@@ -82,22 +82,11 @@
     .feedback-fig  { flex:0 0 150px; display:flex; justify-content:flex-end; }
     .feedback-img  { width:100%; height:auto; border:1px dashed #cbd5e1; border-radius:8px; background:#f1f5f9; }
 
-    /* --- Pro列（開発中）ハッチングセル --- */
+    /* --- 開発予定セクション（下段） --- */
     .pricing-table-wrap { position:relative; }
-    .pricing-table tbody td.pro-col{
-      /* 線の部分だけグレー、間は白として1本の background で描く
-         行側のゼブラ背景よりもセレクタが強いので、こちらが優先される */
-      background:
-        repeating-linear-gradient(
-          135deg,
-          #ffffff 0px,
-          #ffffff 5px,   /* ここまで白 */
-          #cbd5e1 5px,   /* ここから1pxだけ線 */
-          #cbd5e1 6px    /* 線の太さ：1px → 間隔5px */
-        );
-      text-align:center;
-      font-size:13px;
-      line-height:1.8;
+    .pricing-table tbody tr.planned-section-row th,
+    .pricing-table tbody tr.planned-section-row td{
+      background:#f9fafb;
     }
   </style>
 </head>
@@ -150,7 +139,7 @@
             △<br><small>（3ページ ／ 各ページ3件まで）</small>
           </td>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
-          <td class="pro-col" style="border:1px solid #e5e7eb; padding:8px 0.5em;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
         <tr>
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">スタイル変更</th>
@@ -158,58 +147,55 @@
             △<br><small>（一部のみ変更可能）</small>
           </td>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
-          <td class="pro-col" style="border:1px solid #e5e7eb; padding:8px 0.5em;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
         <tr>
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">バックアップ機能</th>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
-          <td class="pro-col" style="border:1px solid #e5e7eb; padding:8px 0.5em;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
-        <tr>
-          <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">今後実装予定の機能</th>
-          <td colspan="3" style="border:1px solid #e5e7eb; padding:8px 0.5em; font-size:12px; text-align:left;">
-            <small>
-              このブロックは開発予定の機能です。×・△・〇は、実装時に予定されている提供範囲を表しており、
-              開発状況により変更・中止となる場合があります。
-            </small>
-          </td>
+        <tr class="planned-section-header">
+          <th colspan="4" style="border:1px solid #e5e7eb; border-top:2px solid #94a3b8; padding:8px 0.5em; text-align:left; background:#f9fafb;">
+            今後実装予定の機能<br>
+            <small>このブロックは開発予定の機能です。×・△・〇は、実装時に予定されている提供範囲を表しており、開発状況により変更・中止となる場合があります。</small>
+          </th>
         </tr>
-        <tr>
+        <tr class="planned-section-row">
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">PDF/画像/グラフの見出し登録</th>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">△</td>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
-          <td class="pro-col" style="border:1px solid #e5e7eb; padding:8px 0.5em;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
-        <tr>
+        <tr class="planned-section-row">
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">YouTube動画の見出し登録（再生位置の登録）</th>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">△</td>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
-          <td class="pro-col" style="border:1px solid #e5e7eb; padding:8px 0.5em;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
-        <tr>
+        <tr class="planned-section-row">
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">管理画面（見出しのスタイル一括編集や一括削除など）</th>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">△</td>
-          <td class="pro-col" style="border:1px solid #e5e7eb; padding:8px 0.5em;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
-        <tr>
+        <tr class="planned-section-row">
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">登録見出しのカテゴリ分け</th>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
-          <td class="pro-col" style="border:1px solid #e5e7eb; padding:8px 0.5em;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
-        <tr>
+        <tr class="planned-section-row">
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">クラウド同期</th>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
-          <td class="pro-col" style="border:1px solid #e5e7eb; padding:8px 0.5em;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
-        <tr>
+        <tr class="planned-section-row">
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">エクスポート機能</th>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
-          <td class="pro-col" style="border:1px solid #e5e7eb; padding:8px 0.5em;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
 		<tr id="row-first" class="cta-row">
           <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;"><strong>初めて</strong>有料プランを利用</th>
