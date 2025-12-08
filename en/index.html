@@ -2,16 +2,42 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <title>Headline Marker｜Plan Comparison (Test)</title>
+  <title>Headline Marker｜プラン比較（テスト）</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <!-- 検索除外（実質非公開テスト用） -->
   <meta name="robots" content="noindex, nofollow">
   <style>
-    :root { --brand:#6366F1; --bg:#EEF2FF; }
+    :root { --brand:#6366F1; --bg:#EEF2FF; --headbg:rgba(99,102,241,.16); }
     body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Noto Sans", sans-serif; margin:0; padding:32px; color:#111; background:var(--bg); }
     h1 { font-size:24px; margin:0; }
-    .title { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:24px; }
+    .title { display:flex; align-items:center; justify-content:center; gap:12px; margin:0 auto 24px; max-width:620px; position:relative; }
     .title img { width:28px; height:28px; }
+    .title-actions { position:absolute; right:0; top:50%; transform:translateY(-50%); }
+    .btn-lang {
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid #cbd5e1;
+      background:#fff;
+      color:#111827;
+      font-size:12px;
+      text-decoration:none;
+      line-height:1;
+    }
+    .btn-lang:hover { background:#eff6ff; }
+    .actions { text-align:right; margin-top:8px; }
+    .btn-lang {
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid #cbd5e1;
+      background:#fff;
+      color:#111827;
+      font-size:12px;
+      text-decoration:none;
+      line-height:1;
+    }
+    .btn-lang:hover { background:#eff6ff; }
     .actions { text-align:right; margin-top:8px; }
     ul { margin:0 0 16px 18px; }
     .btn { display:inline-block; padding:10px 16px; border-radius:8px; background:var(--brand); color:#fff; text-decoration:none; font-weight:600; }
@@ -19,14 +45,14 @@
 	/* --- table decorations --- */
     .pricing-table{ box-shadow:0 0 0 2px #c7d2fe; border-radius:12px; overflow:hidden; }  /* 外枠だけを太く見せるフレーム */
     .pricing-table th,
-    .pricing-table td { font-weight:400; }  /* テーブル内はデフォルトで太字解除（必要な箇所は <strong> で指定） */
-    .pricing-table thead th { background: rgba(99,102,241,.16); border-bottom: none; }                          /* 見出し行：少しだけ濃く */
-    .pricing-table tbody tr:nth-child(odd) th,
-    .pricing-table tbody tr:nth-child(odd) td:not(.pro-col) { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数）：Pro列は除外 */
+    .pricing-table td { font-weight:400; text-align:center !important; vertical-align:middle !important; }
+    .pricing-table thead th { background: var(--headbg); border-bottom: none; }
+    .pricing-table tbody tr:nth-child(odd):not(.planned-section-row):not(.cta-row) th,
+    .pricing-table tbody tr:nth-child(odd):not(.planned-section-row):not(.cta-row) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数：開発予定以外＆CTA以外） */
     .pricing-table tbody tr.cta-row th,
-    .pricing-table tbody tr.cta-row td:not(.pro-col) { background: rgba(99,102,241,.16); } /* 最終行：帯感を強化（Pro列は除外） */
-	#row-existing th, #row-existing td { border-top:1px solid #cbd5e1 !important; } /* 行A/Bの境界線（上側） */
-	#row-first    th, #row-first    td { border-bottom:1px solid #cbd5e1 !important; } /* 行A/Bの境界線（下側） */
+    .pricing-table tbody tr.cta-row td { background: var(--headbg); } /* 月額料金＋有料プラン行：ヘッダと同じ色 */
+   #row-existing th, #row-existing td { border-top:2px solid #cbd5e1 !important; } /* 行A/Bの境界線（上側：2px） */
+   #row-first    th, #row-first    td { border-top:2px solid #cbd5e1 !important; border-bottom:2px solid #cbd5e1 !important; } /* 行A/Bの境界線（上下：2px） */
 	/* --- top banners (2枚看板) --- */
     .top-banners { display:flex; gap:12px; margin:16px auto 20px; max-width:620px; }
     .banner-card { flex:1 1 0; border:1px solid #e5e7eb; border-radius:12px; padding:14px 16px; background:#fff; font-weight:700; cursor:pointer; }
@@ -82,42 +108,42 @@
     .feedback-fig  { flex:0 0 150px; display:flex; justify-content:flex-end; }
     .feedback-img  { width:100%; height:auto; border:1px dashed #cbd5e1; border-radius:8px; background:#f1f5f9; }
 
-    /* --- Pro列（開発中）ハッチングセル --- */
+    /* --- 開発予定セクション（下段） --- */
     .pricing-table-wrap { position:relative; }
-    .pricing-table tbody td.pro-col{
-      /* 線の部分だけグレー、間は白として1本の background で描く
-         行側のゼブラ背景よりもセレクタが強いので、こちらが優先される */
-      background:
-        repeating-linear-gradient(
-          135deg,
-          #ffffff 0px,
-          #ffffff 5px,   /* ここまで白 */
-          #cbd5e1 5px,   /* ここから1pxだけ線 */
-          #cbd5e1 6px    /* 線の太さ：1px → 間隔5px */
-        );
-      text-align:center;
-      font-size:13px;
-      line-height:1.8;
+    .pricing-table tbody tr.planned-section-row:nth-child(odd) th,
+    .pricing-table tbody tr.planned-section-row:nth-child(odd) td{
+      background:rgba(99,102,241,.01);
+      color:#9ca3af;
+	  font-size:13px;
+    }
+    .pricing-table tbody tr.planned-section-row:nth-child(even) th,
+    .pricing-table tbody tr.planned-section-row:nth-child(even) td{
+      background:#ffffff;
+      color:#9ca3af;
+	  font-size:13px;
     }
   </style>
 </head>
 <body>
   <div class="title">
     <img src="../assets/icons/hm-38.png" alt="Headline Marker" />
-    <h1>Headline Marker プラン比較（テスト）</h1>
+    <h1>Scroll Memo Features & Pricing Plans</h1>
+	<div class="title-actions">
+      <a href="./pricing-en.html" class="btn-lang">英語版はこちら</a>
+    </div>
   </div>
   <div class="top-banners">
     <button class="banner-card" id="banner-first">
-      For First-Time Paid Users
-      <small>Click to highlight the relevant section</small>
+      New Subscribers（For users upgrading from Free or purchasing a paid plan for the first time.）
+      <small>Click to highlight the relevant row.</small>
     </button>
     <button class="banner-card" id="banner-existing">
-      For Current or Past Paid Users
-      <small>Click to highlight the relevant section</small>
+      Current & Past Subscribers（For users who currently have, or previously had, a paid plan.）
+      <small>Click to highlight the relevant row.</small>
     </button>
   </div>
   <p style="max-width:620px;margin:0 auto 8px;font-size:13px;color:#4b5563;text-align:center;">
-    ✓：Unlimited, △：Limited but available, ×：Unavailable
+    ●: Included / ○: Limited / ―: Not included
   </p>
 
   <div class="pricing" style="max-width: 620px; margin: 0 auto;">
@@ -138,76 +164,106 @@
           <th style="border:1px solid #cbd5e1; border-top:none; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;">Monthly Price (incl. tax)</th>
           <td style="border:1px solid #cbd5e1; border-top:none; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;"><strong>¥0</strong></td>
           <td style="border:1px solid #cbd5e1; border-top:none; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;">
-            <strong>¥360 </strong><br><small>キャンペーン価格 ※</small>
+            <strong>¥190 </strong><br><small style="font-size:11px; white-space:nowrap;">Early Supporter Price *</small>
           </td>
-          <td style="border:1px solid #cbd5e1; border-top:none; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;">—</td>
+          <td style="border:1px solid #cbd5e1; border-top:none; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;"><span style="font-size:11px;">Currently under development</span></td>
         </tr>
         <tr>
-          <th style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">
-            Number of Bookmarks <br><small>(per page)</small>
+          <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">
+            Saved items limit
           </th>
-          <td style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">△<br><small>(3 items)</small></td>
-          <td style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">✓</td>
-          <td class="pro-col" rowspan="6" style="border:1px solid #cbd5e1; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;">
-            <div style="padding:10px 6px;">
-              <div style="font-weight:600;margin-bottom:4px;">現在開発中です</div>
-              <div>正式リリース時に機能一覧を公開します</div>
-            </div>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">
+            △<br><span style="font-size:10.5px; display:block; white-space:nowrap; transform:scale(0.95);">Up to 3 pages / 3 items per page</span>
           </td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
         <tr>
-          <th style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">Number of Pages You Can Save</th>
-          <td style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">△<br><small>(3 pages)</small></td>
-          <td style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">✓</td>
+          <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">Style customization</th>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">
+            △<br><span style="font-size:10.5px; display:block; white-space:nowrap; transform:scale(0.95);">Only some styles available</span>
+          </td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
         <tr>
-          <th style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">Highlight Colors</th>
-          <td style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">△<br><small>(3 items)</small></td>
-          <td style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">✓</td>
+          <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">Backup</th>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
-        <tr>
-          <th style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">Text Colors</th>
-          <td style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">△<br><small>(black / white)</small></td>
-          <td style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">✓</td>
+        <tr class="planned-section-header">
+          <th colspan="4" style="border:1px solid #e5e7eb; border-top:2px solid #cbd5e1; border-bottom:2px solid #cbd5e1; padding:6px 0.5em; text-align:center; background:#f8fafc; color:#475569; font-size:13px; letter-spacing:1px;">
+            <strong>Planned features</strong><br>
+            <span style="display:block; margin-top:2px; font-size:11px; font-weight:400; text-align:left;">
+              The following block lists features that are planned for future development and are not yet available. The – / ○ / ● marks show which plans are expected to include each feature, but the actual availability may change or be cancelled depending on development status.
+            </span>
+          </th>
         </tr>
-        <tr>
-          <th style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">Text Style Options</th>
-          <td style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">×</td>
-          <td style="border:1px solid #e5e7eb;padding:8px 10px;text-align:center;">✓</td>
+        <tr class="planned-section-row">
+          <th style="border:1px solid #e5e7eb; padding:8px 0.5em;">Scroll memos for PDFs, images & charts</th>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">△</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
-        <tr>
-          <th style="border:1px solid #e5e7eb; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;">Backup</th>
-          <td style="border:1px solid #e5e7eb; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;">×</td>
-          <td style="border:1px solid #e5e7eb; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;">×</td>
+        <tr class="planned-section-row">
+          <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">YouTube動画の見出し登録（再生位置の登録）</th>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">△</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
+        </tr>
+        <tr class="planned-section-row">
+          <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">Dashboard for bulk editing/deleting saved headings and styles</th>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">△</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
+        </tr>
+        <tr class="planned-section-row">
+          <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">Categories / folders for saved memos</th>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
+        </tr>
+        <tr class="planned-section-row">
+          <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">Cloud sync</th>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
+        </tr>
+        <tr class="planned-section-row">
+          <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">Export</th>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
 		<tr id="row-first" class="cta-row">
-          <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;"><strong>First-Time</strong>Paid Subscription</th>
+          <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;"><strong>First time </strong>using a paid plan</th>
           <td style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">—</td>
           <td style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">
-            <a class="btn" href="#" data-checkout="https://buy.stripe.com/test_dRm6oz4cU6RGeUz1XMaEE00" onclick="return openFirstModal(this)">Select Plan</a>
+            <a class="btn" href="#" data-checkout="https://buy.stripe.com/test_dRm6oz4cU6RGeUz1XMaEE00" onclick="return openFirstModal(this)">Select plan</a>
           </td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">—</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">In development</td>
         </tr>
         <tr id="row-existing" class="cta-row">
-          <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; border-bottom:2px solid #cbd5e1; padding:8px 0.5em; text-align:center;"><strong>Previously</strong>Subscribed<br><strong>(including canceled)</strong></th>
-          <td colspan="2" style="border:1px solid #e5e7eb; border-bottom:2px solid #cbd5e1; padding:8px 0.5em; text-align:center;">
+          <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; border-bottom:2px solid #cbd5e1; padding:8px 0.5em; text-align:center;"><strong>Already </strong>using a paid plan<br><strong>(including users who have cancelled in the past)</strong></th>
+          <td colspan="2" style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; border-bottom:2px solid #cbd5e1; padding:8px 0.5em; text-align:center;">
             <div class="merged-actions">
-              <a class="btn" href="#" onclick="return openExistingModal()">Manage Plan / Billing</a>
+              <a class="btn" href="#" onclick="return openExistingModal()">Change plan / manage billing</a>
             </div>
           </td>
-          <td style="border:1px solid #e5e7eb; border-bottom:2px solid #cbd5e1; padding:8px 0.5em; text-align:center;">—</td>
+          <td style="border:1px solid #e5e7eb; border-bottom:2px solid #cbd5e1; padding:8px 0.5em; text-align:center;">In development</td>
         </tr>
         <tr>
-          <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:enter;">備考</th>
-          <td colspan="3" style="border:1px solid #e5e7eb; padding:8px 0.5em; font-size:12px; line-height:1.6; text-align:left;">
-            <div style="padding-left:1.35em; text-indent:-1.35em;">
-              ※ Regular price: ¥520 → Now available at<span style="color:#dc2626;">a special campaign price of ¥360.</span>
+          <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center !important;">備考</th>
+          <td colspan="3" style="border:1px solid #e5e7eb; padding:8px 0.5em; font-size:11px; line-height:1.6; text-align:left;">
+            <div style="padding-left:1.35em; text-indent:-1.35em; text-align:left;">
+              * As some features are still under development, we are currently offering an “Early Supporter Price” of ¥190 (regular price planned to be ¥380). As a token of appreciation for using and supporting the extension while it is still in development, you can in principle continue to use it at this Early Supporter Price for as long as your subscription remains active, even after new features are added.
             </div>
-            <div style="padding-left:1.35em; text-indent:-1.35em;">
-              ※ Additional features for Free/Standard plans are planned. After release, pricing will return to<span style="color:#dc2626;">regular rates.</span>
+            <div style="padding-left:1.35em; text-indent:-1.35em; text-align:left;">
+              * However, prices may need to be revised if changes in tax rules, platform terms, or significant economic conditions make it difficult to continue operating. New sign-ups at the Early Supporter Price may also end without prior notice.
             </div>
-            <div style="padding-left:1.35em; text-indent:-1.35em;">
-              ※ Users who subscribe during the campaign<span style="color:#dc2626;">can continue using the discounted price permanently.</span>
+            <div style="padding-left:1.35em; text-indent:-1.35em; text-align:left;">
+              * If you cancel and later subscribe again, the regular price at that time will apply.
             </div>
           </td>
         </tr>
@@ -217,16 +273,16 @@
   <!-- two-column section: 今後の開発予定 / ご意見・ご要望 -->
     <div class="post-sections">
       <div class="post-col">
-        <h3 class="section-title">Updates</h3>
+        <h3 class="section-title">Announcements</h3>
         <div class="section-card">
           <div class="notice-list">
             <div class="notice-item">
               <span class="notice-date">2025-11-18</span>
-              <span class="notice-body">We are developing additional features for Free and Standard plans (with some limitations for Free).</span>
+              <span class="notice-body">We are currently developing additional features that will be available in the Free and Standard plans. (Some limits are planned for the Free plan.)</span>
             </div>
             <div class="notice-item">
               <span class="notice-date">2025-11-18</span>
-              <span class="notice-body">Major updates or changes will be announced here and via popup notifications.</span>
+              <span class="notice-body">Major updates or changes in specifications will be announced on this page and via notifications in the extension popup.</span>
             </div>
           </div>
         </div>
@@ -234,19 +290,19 @@
 
       <!-- 右：ご意見・ご要望 -->
       <div class="post-col">
-        <h3 class="section-title">Feedback</h3>
+        <h3 class="section-title">Feedback & requests</h3>
         <div class="section-card">
           <div class="feedback-flex">
             <div class="feedback-text">
-              <p class="intro">Headline Marker values your feedback and uses it to improve the product.</p>
-              <p class="intro">You can submit your feedback via the “Feedback” button inside the popup (simple survey format).</p>
-			  <p class="intro">The survey is always open, and you can update your response anytime.</p>
+              <p class="intro">At Scroll Memo, we value your feedback and use it to improve the extension.</p>
+              <p class="intro">Please share your thoughts via the “Feedback” button in the extension popup (short survey form).</p>
+			  <p class="intro">The survey is always open, and you can update (overwrite) your answers later, so feel free to revise them anytime.</p>
             </div>
             <div class="feedback-fig">
               <img
                 class="feedback-img"
                 src="../assets/feedback-entry-ja.png"
-                alt="ポップアップ右下の『ご意見』ボタン"
+                alt=“Feedback” button at the bottom-right of the popup
                 loading="lazy"
                 width="150"
                 height="150"
@@ -262,24 +318,24 @@
   <!-- Modals -->
   <div id="modal-first" class="modal-backdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mf-title">
-      <h3 id="mf-title">Is this your first time?</h3>
-      <p>This link is for users subscribing to a paid plan for <strong>the first time.</strong> <br>If you have subscribed before, please use <strong>“Manage Plan / Billing” </strong>below.</p>
+      <h3 id="mf-title">Is this your first time using a paid plan?</h3>
+      <p>This link is intended for users who are subscribing to a paid plan for the first time.<br>If you are already using a paid plan or have used one in the past, please close this dialog and use the “Change plan / manage billing” section below instead.</p>
       <div class="actions">
         <button class="btn-outline" data-close="modal-first">Close</button>
-        <button class="btn" id="mf-ok">Continue (Go to Checkout)</button>
+        <button class="btn" id="mf-ok">Continue (go to payment)</button>
       </div>
     </div>
   </div>
 
   <div id="modal-existing" class="modal-backdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="me-title">
-      <h3 id="me-title">For Existing Users</h3>
-      <p>Please verify using the email address you used for your previous purchase.<br>
-      Other email addresses will not match your subscription records.<br>
-      If you no longer have access to the previous email, you may subscribe again using a new one via the <strong>“First-Time Paid Users”</strong> section.</p>
+      <h3 id="me-title">This page is for existing users</h3>
+      <p>Please verify yourself using the email address you used when purchasing.<br>
+      We won’t be able to find your account if you use a different email address.<br>
+      If you no longer know the email address you used before, you can select a plan from the “First time using a paid plan” section above, verify yourself with a new email address, and purchase again.</p>
       <div class="actions">
         <button class="btn-outline" data-close="modal-existing">Close</button>
-        <button class="btn" id="me-ok">Continue (Billing Portal)</button>
+        <button class="btn" id="me-ok">Continue (go to plan & billing management)</button>
       </div>
     </div>
   </div>
