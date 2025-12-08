@@ -10,9 +10,22 @@
     :root { --brand:#6366F1; --bg:#EEF2FF; --headbg:rgba(99,102,241,.16); }
     body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Noto Sans", sans-serif; margin:0; padding:32px; color:#111; background:var(--bg); }
     h1 { font-size:24px; margin:0; }
-    .title { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:24px; position:relative; }
+    .title { display:flex; align-items:center; justify-content:center; gap:12px; margin:0 auto 24px; max-width:620px; position:relative; }
     .title img { width:28px; height:28px; }
     .title-actions { position:absolute; right:0; top:50%; transform:translateY(-50%); }
+    .btn-lang {
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid #cbd5e1;
+      background:#fff;
+      color:#111827;
+      font-size:12px;
+      text-decoration:none;
+      line-height:1;
+    }
+    .btn-lang:hover { background:#eff6ff; }
+    .actions { text-align:right; margin-top:8px; }
     .btn-lang {
       display:inline-block;
       padding:6px 12px;
