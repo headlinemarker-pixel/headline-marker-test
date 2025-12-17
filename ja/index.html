@@ -122,11 +122,27 @@
       color:#9ca3af;
 	  font-size:13px;
     }
+	
+	/* レイアウト確認用の箱 */
+    .layout-box {
+      width: 100%;          /* 横幅いっぱい */
+      height: 100px;        /* 高さは適当に短く */
+      background: #d1d5db;  /* グレーの背景 */
+      border: 2px dashed #6b7280; /* 点線の枠 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #374151;
+    }
   </style>
 </head>
 <body>
   <div class="page-grid">
-    <div class="page-pad"></div>
+    <div class="page-pad">
+      +      <div class="layout-box">左カラム<br>(180px)</div>
+    </div>
+
     <div class="page-main">
       <div class="shell">
   <div class="title">
