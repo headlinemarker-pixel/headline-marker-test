@@ -9,7 +9,15 @@
   <style>
     :root { --brand:#6366F1; --bg:#EEF2FF; --headbg:rgba(99,102,241,.16); }
 	/* 3カラム（左右余白 + 中央コンテンツ） */
-    .page-grid { display:grid; grid-template-columns:1fr 750px 1fr;
+    .page-grid {
+      display: grid;
+      /* 左180px / 中700px / 右220px の固定幅 */
+      grid-template-columns: 180px 700px 220px;
+      /* 全体を画面中央に寄せる */
+      justify-content: center;
+      /* カラム間の隙間 */
+      gap: 20px;
+    }
     .page-main { grid-column:2; }
     .shell { display:block; width:100%;
     .pricing { margin:0; }
