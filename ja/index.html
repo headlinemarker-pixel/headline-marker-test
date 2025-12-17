@@ -13,7 +13,8 @@
       display: grid;
       /* 左235px / 中630px の固定幅（右カラムなし） */
       grid-template-columns: var(--left-col) var(--main-col);
-      /* 全体を画面中央に寄せる */
+      /* 全体を画面中央に寄せる（これが無いと左に寄り過ぎて切れる） */
+      justify-content: center;
       /* 2カラムでも本文（中央カラム）自体を画面の左右中央に揃える */
       transform: translateX(calc((var(--left-col) + var(--col-gap)) / -2));
       /* カラム間の隙間 */
