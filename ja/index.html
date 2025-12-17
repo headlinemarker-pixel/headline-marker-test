@@ -48,6 +48,8 @@
     .pricing-table{ box-shadow:0 0 0 2px #c7d2fe; border-radius:12px; overflow:hidden; }  /* 外枠だけを太く見せるフレーム */
     .pricing-table th,
     .pricing-table td { font-weight:400; text-align:center; vertical-align:middle; }
+	/* 左列（tbodyのth）が一部 inline style で left になっているため、常に中央寄せにする */
+    .pricing-table tbody th { text-align:center !important; }
     .pricing-table thead th { background: var(--headbg); border-bottom: none; }
     .pricing-table tbody tr:nth-child(odd):not(.planned-section-row):not(.cta-row) th,
     .pricing-table tbody tr:nth-child(odd):not(.planned-section-row):not(.cta-row) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数：開発予定以外＆CTA以外） */
