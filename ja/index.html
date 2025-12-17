@@ -51,19 +51,6 @@
     .pricing-table tbody tr:nth-child(odd):not(.planned-section-row):not(.cta-row) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数：開発予定以外＆CTA以外） */
     .pricing-table tbody tr.cta-row th,
     .pricing-table tbody tr.cta-row td { background: var(--headbg); } /* 月額料金＋有料プラン行：ヘッダと同じ色 */
-   #row-existing th, #row-existing td { border-top:2px solid #cbd5e1 !important; } /* 行A/Bの境界線（上側：2px） */
-   #row-first    th, #row-first    td { border-top:2px solid #cbd5e1 !important; border-bottom:2px solid #cbd5e1 !important; } /* 行A/Bの境界線（上下：2px） */
-	/* --- top banners (2枚看板) --- */
-    .top-banners { display:flex; gap:12px; margin:16px auto 20px; max-width:620px; }
-    .banner-card { flex:1 1 0; border:1px solid #e5e7eb; border-radius:12px; padding:14px 16px; background:#fff; font-weight:700; cursor:pointer; }
-    .banner-card:hover { box-shadow:0 2px 8px rgba(0,0,0,.06); }
-    .banner-card small{ display:block; font-weight:500; color:#6b7280; margin-top:4px; }
-	/* 看板の赤枠（行より細い 2px） */
-    .banner-highlight { outline:2px solid #ef4444; outline-offset:-2px; }
-
-    /* --- row highlight --- */
-    .row-highlight { outline:3px solid #ef4444; outline-offset:-3px; transition:outline-color .2s; }
-
     /* --- merged row (行B) layout --- */
     .merged-cell { padding:8px 12px; }
     .merged-flex { display:flex; align-items:center; gap:12px; } /* 右側ボタンを中央寄せできるようsp-betweenを除去 */
@@ -131,16 +118,6 @@
   </div>
   <div class="lang-actions">
     <a href="./pricing-en.html" class="btn-lang">English version</a>
-  </div>
-  <div class="top-banners">
-    <button class="banner-card" id="banner-first">
-      有料プランが初めての方
-      <small>クリックすると該当欄が強調表示されます</small>
-    </button>
-    <button class="banner-card" id="banner-existing">
-      有料プランを利用中・利用経験のある方
-      <small>クリックすると該当欄が強調表示されます</small>
-    </button>
   </div>
   <p style="max-width:620px;margin:0 auto 8px;font-size:13px;color:#4b5563;text-align:center;">
     〇：制限なく利用できる、△：制限があるが利用できる、×：利用できない
@@ -236,28 +213,11 @@
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
-		<tr id="row-first" class="cta-row">
-          <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;"><strong>初めて</strong>有料プランを利用</th>
-          <td style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">—</td>
-          <td style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">
-            <a class="btn" href="#" data-checkout="https://buy.stripe.com/test_dRm6oz4cU6RGeUz1XMaEE00" onclick="return openFirstModal(this)">プランを選択</a>
-          </td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">準備中</td>
-        </tr>
-        <tr id="row-existing" class="cta-row">
-          <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; border-bottom:2px solid #cbd5e1; padding:8px 0.5em; text-align:center;"><strong>既に</strong>有料プランの利用がある<br><strong>（解約済み含む）</strong></th>
-          <td colspan="2" style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; border-bottom:2px solid #cbd5e1; padding:8px 0.5em; text-align:center;">
-            <div class="merged-actions">
-              <a class="btn" href="#" onclick="return openExistingModal()">プラン変更・支払い管理</a>
-            </div>
-          </td>
-          <td style="border:1px solid #e5e7eb; border-bottom:2px solid #cbd5e1; padding:8px 0.5em; text-align:center;">準備中</td>
-        </tr>
         <tr>
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center !important;">備考</th>
           <td colspan="3" style="border:1px solid #e5e7eb; padding:8px 0.5em; font-size:11px; line-height:1.6; text-align:left;">
             <div style="padding-left:1.35em; text-indent:-1.35em; text-align:left;">
-              ※ 現在、本拡張機能は一部機能を開発中のため、「先行サポーター価格（190円）」でご案内しています（通常価格380円を予定）。開発途中にもかかわらずご利用・ご支援いただいているお客様には感謝を込めて、ご契約を継続されている限り、<span style="color:#dc2626;">機能追加後も原則としてこの先行サポーター価格のまま</span>ご利用いただけます。
+              ※ 現在、本拡張機能は一部機能を開発中のため、Standard プラン は通常価格 380 円（税込）のところを「先行サポーター価格（190 円）」でご提供しています。開発途中にもかかわらずご利用・ご支援いただいているお客様への感謝の気持ちを込めて、ご契約を継続されている限り、機能追加後も原則として Standard プランはこの価格のままご利用いただけます。また、今後 Pro プラン を提供開始する際も、先行サポーターのお客様には通常の Pro 価格より優遇された「先行サポーター向け Pro 価格」で、継続的にご利用いただけるようにする予定です。
             </div>
             <div style="padding-left:1.35em; text-indent:-1.35em; text-align:left;">
               ※ ただし、税制やプラットフォーム規約の変更、著しい経済情勢の変化などにより運営継続が困難となった場合には、やむを得ず価格を改定する可能性があります。また、先行サポーター価格による新規受付は予告なく終了する場合があります。
@@ -315,91 +275,3 @@
   </div>
     </div> <!-- /.post-sections -->
   </div>   <!-- /.pricing -->
-  <!-- Modals -->
-  <div id="modal-first" class="modal-backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mf-title">
-      <h3 id="mf-title">初めてのご利用ですか？</h3>
-      <p>これは <strong>「初めて有料プランに申し込む方」向け</strong> のリンクです。<br>既に有料プランに利用済み・過去に有料プランを利用したことがある方は、この画面を閉じた後、下段の <strong>「プラン変更・支払い管理」</strong> からお進みください。</p>
-      <div class="actions">
-        <button class="btn-outline" data-close="modal-first">閉じる</button>
-        <button class="btn" id="mf-ok">続行（支払い画面へ）</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="modal-existing" class="modal-backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="me-title">
-      <h3 id="me-title">既存ユーザー向けのページです</h3>
-      <p>ご購入時のメールアドレスで本人確認を行ってください。<br>
-      それ以外のメールではお客様情報が見つかりません。<br>
-      もし以前のメールアドレスが分からない場合は、上段の <strong>「初めて利用する方」</strong> からプランを選択して、新しいメールで本人確認し、ご購入いただけます。</p>
-      <div class="actions">
-        <button class="btn-outline" data-close="modal-existing">閉じる</button>
-        <button class="btn" id="me-ok">続行（プラン・支払い管理へ）</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Config
-    const PORTAL_LOGIN_URL = "https://billing.stripe.com/p/login/test_dRm6oz4cU6RGeUz1XMaEE00";
-
-    // Row highlight helper (5s)
-    function highlightRowById(id){
-      const row = document.getElementById(id);
-      if(!row) return;
-      row.classList.add('row-highlight');
-      row.scrollIntoView({ behavior:'smooth', block:'center' });
-      setTimeout(()=>row.classList.remove('row-highlight'), 5000);
-    }
-
-    // Top banners（行の強調に加えて看板自体も赤枠・5秒）
-    function highlightBanner(id){
-      const el = document.getElementById(id);
-      if(!el) return;
-      el.classList.add('banner-highlight');
-      setTimeout(()=> el.classList.remove('banner-highlight'), 5000);
-    }
-    document.getElementById('banner-first')?.addEventListener('click', ()=>{
-      highlightRowById('row-first');
-      highlightBanner('banner-first');
-    });
-    document.getElementById('banner-existing')?.addEventListener('click', ()=>{
-      highlightRowById('row-existing');
-      highlightBanner('banner-existing');
-    });
-
-    // First-time modal
-    let pendingCheckoutUrl = null;
-    window.openFirstModal = function(el){
-      pendingCheckoutUrl = el.getAttribute('data-checkout');
-      document.getElementById('modal-first').classList.add('show');
-      return false;
-    };
-    document.getElementById('mf-ok').addEventListener('click', ()=>{
-      const url = pendingCheckoutUrl;
-      pendingCheckoutUrl = null;
-      document.getElementById('modal-first').classList.remove('show');
-      if(url) window.open(url, '_blank', 'noopener');
-    });
-
-    // Existing modal
-    window.openExistingModal = function(){
-      document.getElementById('modal-existing').classList.add('show');
-      return false;
-    };
-    document.getElementById('me-ok').addEventListener('click', ()=>{
-      document.getElementById('modal-existing').classList.remove('show');
-      window.open(PORTAL_LOGIN_URL, '_blank', 'noopener');
-    });
-
-    // Close buttons
-    document.querySelectorAll('[data-close]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const id = btn.getAttribute('data-close');
-        document.getElementById(id)?.classList.remove('show');
-      });
-    });
-  </script>
-</body>
-</html>
