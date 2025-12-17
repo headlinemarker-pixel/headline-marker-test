@@ -7,16 +7,17 @@
   <!-- 検索除外（実質非公開テスト用） -->
   <meta name="robots" content="noindex, nofollow">
   <style>
-    :root { --brand:#6366F1; --bg:#EEF2FF; --headbg:rgba(99,102,241,.16); }
+    :root { --brand:#6366F1; --bg:#EEF2FF; --headbg:rgba(99,102,241,.16); --left-col:235px; --main-col:630px; --col-gap:20px; }
 	/* 2カラム（左カラム + 中央コンテンツ） */
     .page-grid {
       display: grid;
       /* 左235px / 中630px の固定幅（右カラムなし） */
-      grid-template-columns: 235px 630px ;
+      grid-template-columns: var(--left-col) var(--main-col);
       /* 全体を画面中央に寄せる */
-      justify-content: center;
+      /* 2カラムでも本文（中央カラム）自体を画面の左右中央に揃える */
+      transform: translateX(calc((var(--left-col) + var(--col-gap)) / -2));
       /* カラム間の隙間 */
-      gap: 20px;
+      gap: var(--col-gap);
     }
     .page-main { grid-column:2; }
     .shell { display:block; width:100%; }
