@@ -11,7 +11,7 @@
 	/* 2カラム（左カラム + 中央コンテンツ） */
     .page-grid {
       display: grid;
-      /* 左180px / 中700px の固定幅（右カラムなし） */
+      /* 左235px / 中630px の固定幅（右カラムなし） */
       grid-template-columns: 235px 630px ;
       /* 全体を画面中央に寄せる */
       justify-content: center;
@@ -39,26 +39,13 @@
     }
     .btn-lang:hover { background:#eff6ff; }
     .actions { text-align:right; margin-top:8px; }
-    .btn-lang {
-      display:inline-block;
-      padding:6px 12px;
-      border-radius:999px;
-      border:1px solid #cbd5e1;
-      background:#fff;
-      color:#111827;
-      font-size:12px;
-      text-decoration:none;
-      line-height:1;
-    }
-    .btn-lang:hover { background:#eff6ff; }
-    .actions { text-align:right; margin-top:8px; }
     ul { margin:0 0 16px 18px; }
     .btn { display:inline-block; padding:10px 16px; border-radius:8px; background:var(--brand); color:#fff; text-decoration:none; font-weight:600; }
     .btn:hover { filter:brightness(0.95); }
 	/* --- table decorations --- */
     .pricing-table{ box-shadow:0 0 0 2px #c7d2fe; border-radius:12px; overflow:hidden; }  /* 外枠だけを太く見せるフレーム */
     .pricing-table th,
-    .pricing-table td { font-weight:400; text-align:center !important; vertical-align:middle !important; }
+    .pricing-table td { font-weight:400; text-align:center; vertical-align:middle; }
     .pricing-table thead th { background: var(--headbg); border-bottom: none; }
     .pricing-table tbody tr:nth-child(odd):not(.planned-section-row):not(.cta-row) th,
     .pricing-table tbody tr:nth-child(odd):not(.planned-section-row):not(.cta-row) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数：開発予定以外＆CTA以外） */
@@ -140,7 +127,7 @@
 <body>
   <div class="page-grid">
     <div class="page-pad">
-      <div class="layout-box">左カラム<br>(180px)</div>
+      <div class="layout-box">左カラム<br>(235px)</div>
     </div>
 
     <div class="page-main">
