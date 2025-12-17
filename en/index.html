@@ -7,25 +7,29 @@
   <!-- 検索除外（実質非公開テスト用） -->
   <meta name="robots" content="noindex, nofollow">
   <style>
-    :root { --brand:#6366F1; --bg:#EEF2FF; --headbg:rgba(99,102,241,.16); }
+    :root { --brand:#6366F1; --bg:#EEF2FF; --headbg:rgba(99,102,241,.16); --left-col:235px; --main-col:630px; --col-gap:20px; }
+	/* 2カラム（左カラム + 中央コンテンツ） */
+    .page-grid {
+      display: grid;
+      /* 左235px / 中630px の固定幅（右カラムなし） */
+      grid-template-columns: var(--left-col) var(--main-col);
+	  width: calc(var(--left-col) + var(--col-gap) + var(--main-col));
+      margin: 0 auto;
+      /* 全体を画面中央に寄せる（これが無いと左に寄り過ぎて切れる） */
+      justify-content: center;
+      /* 2カラムでも本文（中央カラム）自体を画面の左右中央に揃える */
+      transform: translateX(calc((var(--left-col) + var(--col-gap)) / -2));
+      /* カラム間の隙間 */
+      gap: var(--col-gap);
+    }
+    .page-main { grid-column:2; }
+    .shell { display:block; width:100%; }
+    .pricing { margin:0; }
     body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "Noto Sans", sans-serif; margin:0; padding:32px; color:#111; background:var(--bg); }
     h1 { font-size:24px; margin:0; }
-    .title { display:flex; align-items:center; justify-content:center; gap:12px; margin:0 auto 24px; max-width:620px; position:relative; }
+    .title { display:flex; align-items:center; justify-content:center; gap:12px; margin:0 0 8px; position:relative; width:100%; }
     .title img { width:28px; height:28px; }
-    .lang-actions { max-width:620px; margin:0 auto 8px; text-align:right; }
-    .btn-lang {
-      display:inline-block;
-      padding:6px 12px;
-      border-radius:999px;
-      border:1px solid #cbd5e1;
-      background:#fff;
-      color:#111827;
-      font-size:12px;
-      text-decoration:none;
-      line-height:1;
-    }
-    .btn-lang:hover { background:#eff6ff; }
-    .actions { text-align:right; margin-top:8px; }
+    .btn-lang--right { position:absolute; right:0; top:50%; transform:translateY(-50%); }
     .btn-lang {
       display:inline-block;
       padding:6px 12px;
@@ -42,28 +46,20 @@
     ul { margin:0 0 16px 18px; }
     .btn { display:inline-block; padding:10px 16px; border-radius:8px; background:var(--brand); color:#fff; text-decoration:none; font-weight:600; }
     .btn:hover { filter:brightness(0.95); }
+	.supporter-link { color:var(--brand); text-decoration:underline; font-weight:600; }
+    .supporter-link:visited { color:var(--brand); }
+    .supporter-link:hover { opacity:.85; }
 	/* --- table decorations --- */
     .pricing-table{ box-shadow:0 0 0 2px #c7d2fe; border-radius:12px; overflow:hidden; }  /* 外枠だけを太く見せるフレーム */
     .pricing-table th,
-    .pricing-table td { font-weight:400; text-align:center !important; vertical-align:middle !important; }
+    .pricing-table td { font-weight:400; text-align:center; vertical-align:middle; }
+	/* 左列（tbodyのth）が一部 inline style で left になっているため、常に中央寄せにする */
+    .pricing-table tbody th { text-align:center !important; }
     .pricing-table thead th { background: var(--headbg); border-bottom: none; }
     .pricing-table tbody tr:nth-child(odd):not(.planned-section-row):not(.cta-row) th,
     .pricing-table tbody tr:nth-child(odd):not(.planned-section-row):not(.cta-row) td { background: rgba(99,102,241,.05); }        /* ゼブラ（奇数：開発予定以外＆CTA以外） */
     .pricing-table tbody tr.cta-row th,
     .pricing-table tbody tr.cta-row td { background: var(--headbg); } /* 月額料金＋有料プラン行：ヘッダと同じ色 */
-   #row-existing th, #row-existing td { border-top:2px solid #cbd5e1 !important; } /* 行A/Bの境界線（上側：2px） */
-   #row-first    th, #row-first    td { border-top:2px solid #cbd5e1 !important; border-bottom:2px solid #cbd5e1 !important; } /* 行A/Bの境界線（上下：2px） */
-	/* --- top banners (2枚看板) --- */
-    .top-banners { display:flex; gap:12px; margin:16px auto 20px; max-width:620px; }
-    .banner-card { flex:1 1 0; border:1px solid #e5e7eb; border-radius:12px; padding:14px 16px; background:#fff; font-weight:700; cursor:pointer; }
-    .banner-card:hover { box-shadow:0 2px 8px rgba(0,0,0,.06); }
-    .banner-card small{ display:block; font-weight:500; color:#6b7280; margin-top:4px; }
-	/* 看板の赤枠（行より細い 2px） */
-    .banner-highlight { outline:2px solid #ef4444; outline-offset:-2px; }
-
-    /* --- row highlight --- */
-    .row-highlight { outline:3px solid #ef4444; outline-offset:-3px; transition:outline-color .2s; }
-
     /* --- merged row (行B) layout --- */
     .merged-cell { padding:8px 12px; }
     .merged-flex { display:flex; align-items:center; gap:12px; } /* 右側ボタンを中央寄せできるようsp-betweenを除去 */
@@ -81,7 +77,7 @@
     .modal-backdrop.show { display:flex; }
 
     /* --- below: plans -> info sections (お知らせ / ご意見・ご要望) --- */
-    .post-sections { max-width:620px; margin:28px auto 0; }
+    .post-sections { max-width:none; margin:28px 0 0; }
     .section-card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:12px 16px; }
     /* 見出しはカード外に出すため、カード内h3の指定は廃止 */
     .post-col > .section-title { margin:0 0 8px; font-size:18px; font-weight:800; padding-left:0; text-align:center; }
@@ -94,7 +90,7 @@
     .notice-date { flex:0 0 90px; font-family:monospace; color:#4b5563; }
     .notice-body { flex:1; }
     /* カード間の見通しを少し良く（縦並び） */
-    .post-sections { margin-top:32px; }
+    .page-pad .post-sections { margin-top:0; }
     .post-col { margin-bottom:16px; }
 	/* 左カラムだけ padding-top を 8px に（8 + .intro margin-top 10 = 18px） */
     .post-sections .post-col:first-child .section-card { padding-top:8px; padding-bottom:8px; }
@@ -122,34 +118,71 @@
       color:#9ca3af;
 	  font-size:13px;
     }
+	
+	/* --- 左カラム：ページ内目次（sticky） --- */
+    .toc {
+      position: sticky;
+      top: 92px; /* 本文の「プラン比較表」の上端に合わせて下げる（title + 説明文の分） */
+    }
+    .toc-card {
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+      padding:12px 14px;
+    }
+    .toc-title {
+      margin:0 0 8px;
+      font-size:14px;
+      font-weight:800;
+      text-align:center;
+      color:#111827;
+    }
+	.toc-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+    .toc-link {
+      display:block;
+      padding:8px 10px;
+      border-radius:10px;
+      text-decoration:none;
+      color:#111827;
+      font-size:13px;
+      line-height:1.2;
+      border:1px solid transparent;
+      background:#f8fafc;
+    }
+    .toc-link:hover { background:#eef2ff; border-color:#c7d2fe; }
+    .toc-sub { font-size:11px; color:#6b7280; margin-top:2px; }
   </style>
 </head>
 <body>
-  <div class="title">
-    <img src="../assets/icons/hm-38.png" alt="Headline Marker" />
-    <h1>My View Point Compare Plans</h1>
-	<div class="title-actions">
-      <a href="./pricing-en.html" class="btn-lang">日本語版はこちら</a>
+  <div class="page-grid">
+    <div class="page-pad">
+      <div class="toc">
+        <div class="toc-card">
+		  <div class="toc-title">On-page index</div>
+          <ul class="toc-list">
+            <li><a class="toc-link" data-scroll href="#sec-plans">Plan comparison</a></li>
+            <li><a class="toc-link" data-scroll href="#sec-supporter">About Early Supporters</a></li>
+            <li><a class="toc-link" data-scroll href="#sec-news">Announcements</a></li>
+            <li><a class="toc-link" data-scroll href="#sec-feedback">Feedback & requests</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
+
+    <div class="page-main">
+      <div class="shell">
+  <div class="title" id="sec-title">
+    <img src="../assets/icons/hm-38.png" alt="Headline Marker" />
+    <h1>My View Point プラン比較</h1>
+    <a href="./pricing-en.html" class="btn-lang btn-lang--right">Switch to USD (English)</a>
   </div>
-  <div class="top-banners">
-    <button class="banner-card" id="banner-first">
-      New to Paid Plans<small>(Upgrading from Free / First-time purchase)</small>
-      <small>Click to highlight the relevant row.</small>
-    </button>
-    <button class="banner-card" id="banner-existing">
-      Current or Past Paid Users<small>(Includes active and cancelled subscriptions)</small>
-      <small>Click to highlight the relevant row.</small>
-    </button>
-  </div>
-  <p style="max-width:620px;margin:0 auto 8px;font-size:13px;color:#4b5563;text-align:center;">
-    ●: Included / ○: Limited / ―: Not included
+  <p style="margin:0 0 8px;font-size:13px;color:#4b5563;text-align:center;">
+    〇：制限なく利用できる、△：制限があるが利用できる、×：利用できない
   </p>
 
-  <div class="pricing" style="max-width: 620px; margin: 0 auto;">
+  <div class="pricing" id="sec-plans">
     <div class="pricing-table-wrap">
-      <table class="pricing-table" style="width:auto;border-collapse:collapse;background:#fff;">
-      <thead>
+      <table class="pricing-table" style="width:100%;border-collapse:collapse;background:#fff;">
       <thead>
         <tr>
           <th style="border:1px solid #cbd5e1;padding:8px 10px;text-align:center;width:34%;">Features</th>
@@ -161,10 +194,13 @@
       <tbody>
         <!-- 価格行 -->
         <tr class="cta-row">
-          <th style="border:1px solid #cbd5e1; border-top:none; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;">Monthly Price<br><small>(incl.tax)</small></th>
+          <th style="border:1px solid #cbd5e1; border-top:none; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;">Monthly Price<br><small>（incl.tax）</small></th>
           <td style="border:1px solid #cbd5e1; border-top:none; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;"><strong>¥0</strong></td>
           <td style="border:1px solid #cbd5e1; border-top:none; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;">
-            <strong>$1.99 </strong><br><small style="font-size:11px; white-space:nowrap;">Early Supporter Price *</small>
+            <strong>$1.99 </strong><br>
+            <small style="font-size:11px; white-space:nowrap;">
+              <a class="supporter-link" data-scroll href="#sec-supporter">Early Supporter Price *</a>
+            </small>
           </td>
           <td style="border:1px solid #cbd5e1; border-top:none; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;"><span style="font-size:11px;">In Development</span></td>
         </tr>
@@ -173,24 +209,24 @@
             Saved View Points
           </th>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">
-            ○<br><span style="font-size:10.5px; display:block; white-space:nowrap; transform:scale(0.95);">Max 3 pages / 3 items each</span>
+            △<br><span style="font-size:10.5px; display:block; white-space:nowrap; transform:scale(0.95);">（Max 3 pages / 3 items each）</span>
           </td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">●</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">●</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
         <tr>
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">Style customization</th>
           <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">
-            ○<br><span style="font-size:10.5px; display:block; white-space:nowrap; transform:scale(0.95);">Limited styles only</span>
+            △<br><span style="font-size:10.5px; display:block; white-space:nowrap; transform:scale(0.95);">（Limited styles only）</span>
           </td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">●</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">●</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
         <tr>
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">Backup</th>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">–</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">–</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">●</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
         <tr class="planned-section-header">
           <th colspan="4" style="border:1px solid #e5e7eb; border-top:2px solid #cbd5e1; border-bottom:2px solid #cbd5e1; padding:6px 0.5em; text-align:center; background:#f8fafc; color:#475569; font-size:13px; letter-spacing:1px;">
@@ -202,203 +238,153 @@
         </tr>
         <tr class="planned-section-row">
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em;">Scroll memos for PDFs, images & charts</th>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">○</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">●</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">●</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">△</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
         <tr class="planned-section-row">
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">YouTube memos & playback positions</th>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">○</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">●</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">●</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">△</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
         <tr class="planned-section-row">
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">Dashboard for bulk editing/deleting saved headings and styles</th>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">–</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">○</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">●</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">△</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
         <tr class="planned-section-row">
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">Categories / folders for saved memos</th>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">–</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">–</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">●</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
         <tr class="planned-section-row">
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">Cloud sync</th>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">–</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">–</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">●</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
         <tr class="planned-section-row">
           <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:left;">Export</th>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">–</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">–</td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">●</td>
-        </tr>
-		<tr id="row-first" class="cta-row">
-          <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;"><strong>First-time </strong>Paid Subscription</th>
-          <td style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">—</td>
-          <td style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; padding:8px 0.5em; text-align:center;">
-            <a class="btn" href="#" data-checkout="https://buy.stripe.com/test_dRm6oz4cU6RGeUz1XMaEE00" onclick="return openFirstModal(this)">Select plan</a>
-          </td>
-          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">Not available yet</td>
-        </tr>
-        <tr id="row-existing" class="cta-row">
-          <th style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; border-bottom:2px solid #cbd5e1; padding:8px 0.5em; text-align:center;">Current / Past Paid Subscription<small>(Includes cancelled plans)</small></th>
-          <td colspan="2" style="border:1px solid #e5e7eb; border-right-color:#cbd5e1; border-bottom:2px solid #cbd5e1; padding:8px 0.5em; text-align:center;">
-            <div class="merged-actions">
-              <a class="btn" href="#" onclick="return openExistingModal()">Change plan / manage billing</a>
-            </div>
-          </td>
-          <td style="border:1px solid #e5e7eb; border-bottom:2px solid #cbd5e1; padding:8px 0.5em; text-align:center;">Not available yet</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">×</td>
+          <td style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center;">〇</td>
         </tr>
         <tr>
-          <th style="border:1px solid #e5e7eb; padding:8px 0.5em; text-align:center !important;">備考</th>
-          <td colspan="3" style="border:1px solid #e5e7eb; padding:8px 0.5em; font-size:11px; line-height:1.6; text-align:left;">
+          <th style="border:1px solid #e5e7eb; border-top:2px solid #cbd5e1; padding:8px 0.5em; text-align:center !important;">備考</th>
+          <td colspan="3" style="border:1px solid #e5e7eb; border-top:2px solid #cbd5e1; padding:8px 0.5em; font-size:11px; line-height:1.6; text-align:left;">
             <div style="padding-left:1.35em; text-indent:-1.35em; text-align:left;">
-              * We offer a reduced “Early Supporter Price” of $1.99 (regular price planned to be $2.99) during development. As a thank-you for your support, you will in principle keep this rate for as long as your subscription remains active, even after full release.
+              ※ Prices include tax. Paid plans are billed monthly and renew automatically.
             </div>
             <div style="padding-left:1.35em; text-indent:-1.35em; text-align:left;">
-              * However, prices may be revised in exceptional cases (e.g., changes in tax/platform terms). This offer may end without notice.
+              ※ After cancellation, you can continue using the paid plan until the end of the current billing month. If you re-subscribe later, the price and terms at that time will apply.
             </div>
             <div style="padding-left:1.35em; text-indent:-1.35em; text-align:left;">
-              * If you cancel and re-subscribe later, the current regular price will apply.
+              ※ Refunds are not available.
+            </div>
+            <div style="padding-left:1.35em; text-indent:-1.35em; text-align:left;">
+              ※ Supported environment: Google Chrome (extension). It works on many common websites, but it may not work on some pages due to website-side specifications or restrictions.
+            </div>
+            <div style="padding-left:1.35em; text-indent:-1.35em; text-align:left;">
+              ※ Specifications, UI, and availability may be changed or improved without notice.
+            </div>
+            <div style="padding-left:1.35em; text-indent:-1.35em; text-align:left;">
+              ※ This extension is designed not to collect or store personally identifiable information (such as your name or email address). For identification purposes, it may use a random ID that is not personal information.
+            </div>
+            <div style="padding-left:1.35em; text-indent:-1.35em; text-align:left;">
+              ※ Payments and billing are handled on Stripe pages, and you may be asked to enter an email address, etc. This information is handled by Stripe, and the extension (developer) does not collect or store your email address.
+            </div>
+            <div style="padding-left:1.35em; text-indent:-1.35em; text-align:left;">
+              ※ Currently, saved data is stored mainly locally. If we offer multi-device sync as a future Pro feature, data may be stored in the cloud for syncing. In that case, you may need to sign in via Google’s authentication screen. Login information (email/password, etc.) is handled by Google, and the extension (developer) does not collect or store it.
+            </div>
+            <div style="padding-left:1.35em; text-indent:-1.35em; text-align:left;">
+              ※ As this is an independently developed project, we cannot guarantee individual support. We accept bug reports via email and will do our best to improve within a reasonable scope.
             </div>
           </td>
         </tr>
       </tbody>
       </table>
     </div>
-  <!-- two-column section: 今後の開発予定 / ご意見・ご要望 -->
-    <div class="post-sections">
-      <div class="post-col">
-        <h3 class="section-title">Announcements</h3>
-        <div class="section-card">
-          <div class="notice-list">
-            <div class="notice-item">
-              <span class="notice-date">2025-11-18</span>
-              <span class="notice-body">New features are coming to Free & Standard plans. (Usage limits apply to Free.)</span>
-            </div>
-            <div class="notice-item">
-              <span class="notice-date">2025-11-18</span>
-              <span class="notice-body">Major updates will be announced here and via popup notifications.</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  </div>
 
-      <!-- 右：ご意見・ご要望 -->
-      <div class="post-col">
-        <h3 class="section-title">Feedback & requests</h3>
-        <div class="section-card">
-          <div class="feedback-flex">
-            <div class="feedback-text">
-              <p class="intro">At My View Point, we value your feedback and use it to improve the extension.</p>
-              <p class="intro">Please share your thoughts via the “Feedback” button in the extension popup (short survey form).</p>
-			  <p class="intro">The survey is always open, and you can update (overwrite) your answers later, so feel free to revise them anytime.</p>
-            </div>
-            <div class="feedback-fig">
-              <img
-                class="feedback-img"
-                src="../assets/feedback-entry-ja.png"
-                alt=“Feedback” button at the bottom-right of the popup
-                loading="lazy"
-                width="150"
-                height="150"
-              >
-            </div>
-          </div>
+  
+  <div class="post-sections">
+    <!-- About Early Supporters -->
+    <div class="post-col" style="margin-bottom:16px;">
+      <h2 class="section-title" id="sec-supporter">先行サポーターについて</h2>
+      <div class="section-card">
+        <p>We call customers who subscribe to a paid plan while the extension is still under development “Early Supporters.”</p>
+        <p>Early Supporters receive the following benefits:</p>
+        <ul>
+          <li>A 🌟 (Early Supporter badge) will appear next to your plan in the extension popup.</li>
+          <li>You can use the paid plan at a discounted Early Supporter price.</li>
+          <li>As long as you keep your paid subscription active, you can continue at the Early Supporter price even after new features are added.</li>
+          <li>Future Pro features will also be available at an Early Supporter Pro price.</li>
+        </ul>
+        <p style="font-size:12px; line-height:1.4; color:#6b7280; margin-top:10px;">
+          ※However, if continued operation becomes difficult due to tax changes, platform policy changes, or significant economic conditions, we may revise prices. Also, new sign-ups at the Early Supporter price may end without notice.<br>
+          ※If the Early Supporter price ends and you cancel and re-subscribe later, the regular price at that time will apply.
+        </p>
+      </div>
+    </div>
+
+    <!-- お知らせ -->
+    <div class="post-col">
+      <h2 class="section-title" id="sec-news">Announcements</h2>
+      <div class="section-card">
+        <div class="notice-item">
+          <div class="notice-date">2025-10-11</div>
+          <div class="notice-body">Updated the pricing & plan table.</div>
+        </div>
+        <div class="notice-item">
+          <div class="notice-date">2025-10-09</div>
+          <div class="notice-body">We’re preparing new features.</div>
         </div>
       </div>
     </div>
-  </div>
-    </div> <!-- /.post-sections -->
-  </div>   <!-- /.pricing -->
-  <!-- Modals -->
-  <div id="modal-first" class="modal-backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mf-title">
-      <h3 id="mf-title">Is this your first time using a paid plan?</h3>
-      <p>This link is intended for users who are subscribing to a paid plan for the first time.<br>If you are already using a paid plan or have used one in the past, please close this dialog and use the “Change plan / manage billing” section below instead.</p>
-      <div class="actions">
-        <button class="btn-outline" data-close="modal-first">Close</button>
-        <button class="btn" id="mf-ok">Continue (go to payment)</button>
+
+    <!-- ご意見・ご要望 -->
+    <div class="post-col">
+      <h2 class="section-title" id="sec-feedback">Feedback & requests</h2>
+      <div class="section-card feedback-flex">
+        <div class="feedback-text">
+          <p>We welcome your feedback.</p>
+          <p>You can also send feedback using the “Feedback” button at the bottom-right of the extension popup.</p>
+        </div>
+        <div class="feedback-fig">
+          <img
+            class="feedback-img"
+            src="../assets/feedback-entry-ja.png"
+            alt="ポップアップ右下の『ご意見』ボタン"
+            loading="lazy"
+            width="150"
+            height="150"
+          >
+        </div>
       </div>
     </div>
   </div>
-
-  <div id="modal-existing" class="modal-backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="me-title">
-      <h3 id="me-title">This page is for existing users</h3>
-      <p>Please verify yourself using the email address you used when purchasing.<br>
-      We won’t be able to find your account if you use a different email address.<br>
-      If you no longer know the email address you used before, you can select a plan from the “First time using a paid plan” section above, verify yourself with a new email address, and purchase again.</p>
-      <div class="actions">
-        <button class="btn-outline" data-close="modal-existing">Close</button>
-        <button class="btn" id="me-ok">Continue (go to plan & billing management)</button>
-      </div>
-    </div>
-  </div>
-
+  
   <script>
-    // Config
-    const PORTAL_LOGIN_URL = "https://billing.stripe.com/p/login/test_dRm6oz4cU6RGeUz1XMaEE00";
+    // data-scroll のリンクをクリックしたら、対象セクションが「上下中央」に来るようにスクロール
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[data-scroll]');
+      if (!a) return;
+      const href = a.getAttribute("href") || "";
+      if (!href.startsWith("#")) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
 
-    // Row highlight helper (5s)
-    function highlightRowById(id){
-      const row = document.getElementById(id);
-      if(!row) return;
-      row.classList.add('row-highlight');
-      row.scrollIntoView({ behavior:'smooth', block:'center' });
-      setTimeout(()=>row.classList.remove('row-highlight'), 5000);
-    }
-
-    // Top banners（行の強調に加えて看板自体も赤枠・5秒）
-    function highlightBanner(id){
-      const el = document.getElementById(id);
-      if(!el) return;
-      el.classList.add('banner-highlight');
-      setTimeout(()=> el.classList.remove('banner-highlight'), 5000);
-    }
-    document.getElementById('banner-first')?.addEventListener('click', ()=>{
-      highlightRowById('row-first');
-      highlightBanner('banner-first');
-    });
-    document.getElementById('banner-existing')?.addEventListener('click', ()=>{
-      highlightRowById('row-existing');
-      highlightBanner('banner-existing');
-    });
-
-    // First-time modal
-    let pendingCheckoutUrl = null;
-    window.openFirstModal = function(el){
-      pendingCheckoutUrl = el.getAttribute('data-checkout');
-      document.getElementById('modal-first').classList.add('show');
-      return false;
-    };
-    document.getElementById('mf-ok').addEventListener('click', ()=>{
-      const url = pendingCheckoutUrl;
-      pendingCheckoutUrl = null;
-      document.getElementById('modal-first').classList.remove('show');
-      if(url) window.open(url, '_blank', 'noopener');
-    });
-
-    // Existing modal
-    window.openExistingModal = function(){
-      document.getElementById('modal-existing').classList.add('show');
-      return false;
-    };
-    document.getElementById('me-ok').addEventListener('click', ()=>{
-      document.getElementById('modal-existing').classList.remove('show');
-      window.open(PORTAL_LOGIN_URL, '_blank', 'noopener');
-    });
-
-    // Close buttons
-    document.querySelectorAll('[data-close]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const id = btn.getAttribute('data-close');
-        document.getElementById(id)?.classList.remove('show');
-      });
+      const rect = target.getBoundingClientRect();
+      const targetTop = rect.top + window.pageYOffset;
+      const viewH = window.innerHeight;
+      const blockH = Math.min(rect.height, viewH * 0.9); // 長いセクションでも中央計算が暴れないように
+      const top = Math.max(0, Math.round(targetTop - (viewH - blockH) / 2));
+      window.scrollTo({ top, behavior: "smooth" });
+      history.replaceState(null, "", href);
     });
   </script>
 </body>
