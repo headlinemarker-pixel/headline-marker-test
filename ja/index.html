@@ -94,7 +94,7 @@
     .notice-date { flex:0 0 90px; font-family:monospace; color:#4b5563; }
     .notice-body { flex:1; }
     /* カード間の見通しを少し良く（縦並び） */
-    .post-sections { margin-top:32px; }
+    .page-pad .post-sections { margin-top:0; }
     .post-col { margin-bottom:16px; }
 	/* 左カラムだけ padding-top を 8px に（8 + .intro margin-top 10 = 18px） */
     .post-sections .post-col:first-child .section-card { padding-top:8px; padding-bottom:8px; }
@@ -260,33 +260,34 @@
       </tbody>
       </table>
     </div>
-  <!-- two-column section: 今後の開発予定 / ご意見・ご要望 -->
-    <div class="post-sections">
-      <div class="post-col">
-        <h3 class="section-title">お知らせ</h3>
-        <div class="section-card">
-          <div class="notice-list">
+  </div>
+      </div>
+    </div>
+
+    <div class="page-pad">
+      <div class="post-sections">
+        <!-- お知らせ -->
+        <div class="post-col">
+          <h2 class="section-title">お知らせ</h2>
+          <div class="section-card">
             <div class="notice-item">
-              <span class="notice-date">2025-11-18</span>
-              <span class="notice-body">現在、Free/Standardでご利用いただける追加料機能を開発中です。（Freeは制限有の予定）</span>
+              <div class="notice-date">2025-10-11</div>
+              <div class="notice-body">価格とプラン表を更新しました。</div>
             </div>
             <div class="notice-item">
-              <span class="notice-date">2025-11-18</span>
-              <span class="notice-body">大きなアップデートや仕様変更があった際は、このページとポップアップ内の通知でお知らせします。</span>
+              <div class="notice-date">2025-10-09</div>
+              <div class="notice-body">新しい機能の準備を進めています。</div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- 右：ご意見・ご要望 -->
-      <div class="post-col">
-        <h3 class="section-title">ご意見・ご要望</h3>
-        <div class="section-card">
-          <div class="feedback-flex">
+        <!-- ご意見・ご要望 -->
+        <div class="post-col">
+          <h2 class="section-title">ご意見・ご要望</h2>
+          <div class="section-card feedback-flex">
             <div class="feedback-text">
-              <p class="intro">My View Point では、皆さんからいただいたフィードバックを大切にし、機能改善を進めています。</p>
-              <p class="intro">ポップアップ内の<strong>「ご意見」</strong>ボタンから、アンケート形式でご意見をおよせください。</p>
-			  <p class="intro">アンケートは常時開かれており、後に更新（上書き）していただくこともできますので、いつでも更新してください。</p>
+              <p>皆さんからのご意見を募集しています。</p>
+              <p>拡張機能のポップアップ右下の「ご意見」ボタンからも送れます。</p>
             </div>
             <div class="feedback-fig">
               <img
@@ -301,13 +302,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-      </div>
-    </div>
-
-    <div class="page-pad">
-      <div class="layout-box">右カラム<br>(220px)</div>
     </div>
   </div>
 </body>
