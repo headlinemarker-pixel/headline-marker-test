@@ -13,6 +13,8 @@
       display: grid;
       /* 左235px / 中630px の固定幅（右カラムなし） */
       grid-template-columns: var(--left-col) var(--main-col);
+	  width: calc(var(--left-col) + var(--col-gap) + var(--main-col));
+      margin: 0 auto;
       /* 全体を画面中央に寄せる（これが無いと左に寄り過ぎて切れる） */
       justify-content: center;
       /* 2カラムでも本文（中央カラム）自体を画面の左右中央に揃える */
@@ -117,29 +119,60 @@
 	  font-size:13px;
     }
 	
-	/* レイアウト確認用の箱 */
-    .layout-box {
-      width: 100%;
-      height: 100px;
-      background: #d1d5db;
-      border: 2px dashed #6b7280;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: #374151;
+	/* --- 左カラム：ページ内目次（sticky） --- */
+    .toc {
+      position: sticky;
+      top: 32px; /* body padding と同じ */
     }
+    .toc-card {
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+      padding:12px 14px;
+    }
+    .toc-title {
+      margin:0 0 8px;
+      font-size:14px;
+      font-weight:800;
+      text-align:center;
+      color:#111827;
+    }
+    .toc-list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+    .toc-link {
+      display:block;
+      padding:8px 10px;
+      border-radius:10px;
+      text-decoration:none;
+      color:#111827;
+      font-size:13px;
+      line-height:1.2;
+      border:1px solid transparent;
+      background:#f8fafc;
+    }
+    .toc-link:hover { background:#eef2ff; border-color:#c7d2fe; }
+    .toc-sub { font-size:11px; color:#6b7280; margin-top:2px; }
   </style>
 </head>
 <body>
   <div class="page-grid">
     <div class="page-pad">
-      <div class="layout-box">左カラム<br>(235px)</div>
+      <div class="toc">
+        <div class="toc-card">
+          <div class="toc-title">ページ内目次</div>
+          <ul class="toc-list">
+            <li><a class="toc-link" data-scroll href="#sec-title">タイトル</a></li>
+            <li><a class="toc-link" data-scroll href="#sec-plans">プラン比較表</a></li>
+            <li><a class="toc-link" data-scroll href="#sec-supporter">先行サポーターについて</a></li>
+            <li><a class="toc-link" data-scroll href="#sec-news">お知らせ</a></li>
+            <li><a class="toc-link" data-scroll href="#sec-feedback">ご意見・ご要望</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <div class="page-main">
       <div class="shell">
-  <div class="title">
+  <div class="title" id="sec-title">
     <img src="../assets/icons/hm-38.png" alt="Headline Marker" />
     <h1>My View Point プラン比較</h1>
     <a href="./pricing-en.html" class="btn-lang btn-lang--right">Switch to USD (English)</a>
@@ -148,7 +181,7 @@
     〇：制限なく利用できる、△：制限があるが利用できる、×：利用できない
   </p>
 
-  <div class="pricing">
+  <div class="pricing" id="sec-plans">
     <div class="pricing-table-wrap">
       <table class="pricing-table" style="width:100%;border-collapse:collapse;background:#fff;">
       <thead>
@@ -165,7 +198,10 @@
           <th style="border:1px solid #cbd5e1; border-top:none; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;">月額料金<br><small>（税込）</small></th>
           <td style="border:1px solid #cbd5e1; border-top:none; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;"><strong>¥0</strong></td>
           <td style="border:1px solid #cbd5e1; border-top:none; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;">
-            <strong>¥190 </strong><br><small style="font-size:11px; white-space:nowrap;"><a href="#early-supporter" class="supporter-link">先行サポーター価格 ※</a></small>
+            <strong>¥190 </strong><br>
+            <small style="font-size:11px; white-space:nowrap;">
+              <a class="supporter-link" data-scroll href="#sec-supporter">先行サポーター価格 ※</a>
+            </small>
           </td>
           <td style="border:1px solid #cbd5e1; border-top:none; border-bottom:2px solid #cbd5e1; padding:8px 10px;text-align:center;"><span style="font-size:11px;">現在開発中です</span></td>
         </tr>
@@ -277,8 +313,8 @@
   
   <div class="post-sections">
     <!-- 先行サポーターについて -->
-    <div class="post-col" id="early-supporter">
-      <h2 class="section-title">先行サポーターについて</h2>
+    <div class="post-col" style="margin-bottom:16px;">
+      <h2 class="section-title" id="sec-supporter">先行サポーターについて</h2>
       <div class="section-card">
         <p>開発途中にもかかわらず有料プランをご利用頂いている方を先行サポーターとさせていただきます。</p>
         <p>先行サポーターになると以下のような特典を受けられます。</p>
@@ -297,7 +333,7 @@
 
     <!-- お知らせ -->
     <div class="post-col">
-      <h2 class="section-title">お知らせ</h2>
+      <h2 class="section-title" id="sec-news">お知らせ</h2>
       <div class="section-card">
         <div class="notice-item">
           <div class="notice-date">2025-10-11</div>
@@ -312,7 +348,7 @@
 
     <!-- ご意見・ご要望 -->
     <div class="post-col">
-      <h2 class="section-title">ご意見・ご要望</h2>
+      <h2 class="section-title" id="sec-feedback">ご意見・ご要望</h2>
       <div class="section-card feedback-flex">
         <div class="feedback-text">
           <p>皆さんからのご意見を募集しています。</p>
@@ -331,28 +367,26 @@
       </div>
     </div>
   </div>
-      </div>
-    </div>
-  </div>
   
   <script>
-    (() => {
-      const selector = 'a.supporter-link[href="#early-supporter"]';
-      document.addEventListener('click', (e) => {
-        const a = e.target.closest(selector);
-        if (!a) return;
-        const target = document.getElementById('early-supporter');
-        if (!target) return;
-        e.preventDefault();
+    // data-scroll のリンクをクリックしたら、対象セクションが「上下中央」に来るようにスクロール
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[data-scroll]');
+      if (!a) return;
+      const href = a.getAttribute("href") || "";
+      if (!href.startsWith("#")) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
 
-        const rect = target.getBoundingClientRect();
-        const targetTop = rect.top + window.pageYOffset;
-        const centerOffset = (window.innerHeight / 2) - (rect.height / 2);
-        const top = Math.max(0, Math.round(targetTop - centerOffset));
-        window.scrollTo({ top, behavior: 'smooth' });
-        history.replaceState(null, '', '#early-supporter');
-      });
-    })();
+      const rect = target.getBoundingClientRect();
+      const targetTop = rect.top + window.pageYOffset;
+      const viewH = window.innerHeight;
+      const blockH = Math.min(rect.height, viewH * 0.9); // 長いセクションでも中央計算が暴れないように
+      const top = Math.max(0, Math.round(targetTop - (viewH - blockH) / 2));
+      window.scrollTo({ top, behavior: "smooth" });
+      history.replaceState(null, "", href);
+    });
   </script>
 </body>
 </html>
